@@ -65,18 +65,19 @@
             </div>
         </div>
         <div class="col-md-4 ">
-            <div class="jumbotron ">
-                  <div class="container">
-                    <h2 ><b>CUENTAS</b></h2>
-                    <p ><b>USUARIO 1:</b> administrador@example.com
+            <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title"><b>CUENTAS</b></h5>
+                   <p ><b>USUARIO 1:</b> administrador@example.com
                                     <b>CONTRASEÑA:</b> administrador     
                      </p> 
                     <p ><b>USUARIO 2:</b>
                     mecanico@example.com
                        <b>CONTRASEÑA:</b> mecanico
-                    </p>   
+                    </p> 
                   </div>
             </div>
+      
         </div>
     </div>
 </div>
