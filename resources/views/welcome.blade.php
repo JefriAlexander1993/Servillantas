@@ -81,9 +81,8 @@
                 <div class="title m-b-md">
                     Servillantas El Cerrito
                 </div>
-
-         
             </div>
+    
         </div>
     </body>
 </html>
