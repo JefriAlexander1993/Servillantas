@@ -1,0 +1,18 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+
+}
+
+main{
+	width: 100%;
+	height: auto;
+	background: #3D3836;
+}
+
+.content-all{
+	width: 100%;
+	max-width: 1000px;
+}
