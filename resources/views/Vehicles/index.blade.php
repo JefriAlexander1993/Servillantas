@@ -46,7 +46,10 @@
             	@endforeach
             </tbody>
     	</table>
-    	{!! $vehicles->render() !!}
+        <div class="text-center">
+                {!! $vehicles->render() !!}
+        </div>
+   
     </div>
     <div class="col-sm-2">
     	@include('Products.fragment.aside')

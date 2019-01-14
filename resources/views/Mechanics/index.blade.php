@@ -7,10 +7,7 @@
 
     		Listado de mecanicos.
     		<a href="{{ route('Mechanics.create')}}" class="btn btn-success pull-right" title="Agregar producto"><i class="fa fa-plus-square"></i></a>
-    	</h2>
-
-  
-           
+    	</h2>     
 
     <table class="table table-hover" style="margin-top:8px">
 		  <tr>
@@ -53,7 +50,10 @@
 
 
 <!-- </div> -->
-    	{!! $mechanics1->render() !!}
+	<div class="text-center">
+		{!! $mechanics1->render() !!}
+	</div>
+    	
     </div>
   
     <div class="col-sm-2">

@@ -97,7 +97,7 @@
             <li class="header" style="color: white"><b>MENÚ</b></li>
             
             <li class="active treeview" id="menu">
-                       @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)   
+                   @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)   
           <a href="#" >
             <i class="fa fa-dashboard" ></i> <span>Administración</span>
             <span class="pull-right-container">
@@ -126,12 +126,24 @@
                 <span>Citas</span>
            
               </a>
-            <!--  <ul class="treeview-menu">
+             <ul class="treeview-menu">
                 @if(((Auth::user()->hasRole('ROL_CLIENTE')=== true) || (Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)))
                     <li class="treeview"><a href="{{route('Appointments.create')}}"><i class="fa fa-circle-o"></i> Agendar</a></li>
                 @endif
                 <li><a href="{{url('Calendary')}}"><i class="fa fa-circle-o"></i> Programadas</a></li>
-              </ul>-->
+              </ul>
+            </li>
+            <li class="treeview">
+
+              <a href="#">
+                 <i class="fa fa-car"></i>
+                   <span>Ventas</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+                  <ul  style="display: none;" id="MainMenu" class="treeview-menu">
+                    <li><a href="{{route('Sales.index')}}"><i class="fa fa-circle-o"></i>Lista de ventas</a></li>    
+                  </ul>
+         
             </li>
           
             <li class="treeview">
@@ -287,9 +299,8 @@
       <!-- /.content-wrapper -->
       <!--Fin-Contenido-->
 
-
     <!-- jQuery 2.1.4 -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
@@ -300,6 +311,12 @@
     <!-- AdminLTE App --><!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>-->
 
+    <script type="text/javascript" src="{{asset('js/sweetalert.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('js/document.js')}}"></script>
+
+
+    
 
 
     <!-- Bootstrap 3.3.5 -->

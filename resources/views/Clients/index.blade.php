@@ -47,10 +47,10 @@
 		    </tr>
 		  @endforeach
 		</table>
-
-
 <!-- </div> -->
+	<div class="text-center">
     	{!! $users->render() !!}
+	</div>
     </div>
 
     <div class="col-sm-2">

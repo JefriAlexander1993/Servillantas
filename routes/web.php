@@ -47,3 +47,7 @@ Route::resource('Permission_roles','PermissionRoleController');
 Route::resource('Role_users','RoleUserController');
 
 Route::resource('Mechanics','MechanicController');
+
+Route::resource('Sales','SaleController');
+
+Route::get('Product/getProduct/{code}' , 'ProductController@getProductByCode')->name('Product.getcode');

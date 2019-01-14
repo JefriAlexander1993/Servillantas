@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     {
 
         $rol_administrador  = Role::where('name', 'ROL_ADMINISTRADOR')->first();
-        $rol_vendedor = Role::where('name', 'ROL_VENDEDOR')->first(); 
+      /*  $rol_vendedor = Role::where('name_rol', 'ROL_VENDEDOR')->first(); 
       /*  $rol_cliente = Role::where('name', 'ROL_CLIENTE')->first();  */
         $rol_mecanico = Role::where('name', 'ROL_MECANICO')->first();  
     
@@ -32,7 +32,7 @@ class UserTableSeeder extends Seeder
 
 
         $administrador = new User;
-        $administrador->name = 'Administrador';
+        $administrador->name_user = 'Administrador';
         $administrador->lastname = 'Principal';
         $administrador->email = 'administrador@example.com';
         $administrador->password = bcrypt('administrador');
@@ -41,14 +41,14 @@ class UserTableSeeder extends Seeder
         $administrador->roles()->attach($rol_administrador);
 
 
-        $vendedor = new User;
+     /*   $vendedor = new User;
         $vendedor->name = 'Vendedor';
         $vendedor->lastname = 'Numero Uno';
         $vendedor->email = 'vendedor@example.com';
         $vendedor->password = bcrypt('vendedor');
         $vendedor->phone = '';
         $vendedor->save();
-        $vendedor->roles()->attach($rol_vendedor);
+        $vendedor->roles()->attach($rol_vendedor);*/
       
      /*   $cliente = new User;
         $cliente->name = 'Cliente';
@@ -61,7 +61,7 @@ class UserTableSeeder extends Seeder
 */
 
         $mecanico = new User;
-        $mecanico->name = 'Mecanico';
+        $mecanico->name_user = 'Mecanico';
         $mecanico->lastname = 'Numero Uno';
         $mecanico->email = 'mecanico@example.com';
         $mecanico->password = bcrypt('mecanico');

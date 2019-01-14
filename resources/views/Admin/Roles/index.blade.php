@@ -38,8 +38,10 @@
 			        </tr>
 			    @endforeach
 			</table>
-   
-    	{!! $roles->render() !!}
+  	 <div class="text-center">
+  	 		{!! $roles->render() !!}
+  	 </div>
+    
     </div>
     <div class="col-sm-2">
     	@include('Admin.Roles.fragment.aside')

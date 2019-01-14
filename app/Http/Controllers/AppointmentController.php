@@ -56,7 +56,7 @@ class AppointmentController extends Controller
                 'schedulerLicenseKey '=> 'GPL-My-Project-Is-Open-Source',
                 'FirstDay' => 1,
                 'contentheight' => 650,
-                'editable' => true,
+                'editable' => false,
                 'allDay' => false,
                 'aspectRatio' => 2,
                 'slotLabelFormat' =>'d-m-Y h:i:s',

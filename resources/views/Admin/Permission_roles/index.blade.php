@@ -36,8 +36,10 @@
 			        </tr>
 			    @endforeach
 			</table>
-   
-    	{!! $permission_roles1->render() !!}
+        <div class="text-center">
+            {!! $permission_roles1->render() !!}
+        </div>
+    	
     </div>
     <div class="col-sm-2">
     	@include('Admin.Permission_roles.fragment.aside')

@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
+
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(){
+      
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-
-        return view('Admin.Users.index', ['users' => User::orderBy('id' ,'desc')->paginate('8') ]);
+           $users = DB::table('role_user')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
+                ->join('users', 'role_user.user_id', '=', 'users.id')
+                ->select('users.*', 'roles.name')
+                ->orderBy('id', 'desc')     
+                ->paginate('8'); 
+    
+        return view('Admin.Users.index', compact('users'));
     }
 
     /**

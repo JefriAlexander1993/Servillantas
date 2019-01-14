@@ -26,11 +26,11 @@ class RoleTableSeeder extends Seeder
 
         $rol_administrador->save();
     
-        $rol_vendedor = new Role;
-        $rol_vendedor->name = 'ROL_VENDEDOR';
+       /* $rol_vendedor = new Role;
+        $rol_vendedor->name_rol = 'ROL_VENDEDOR';
         $rol_vendedor->display_name = 'Vendedor';
         $rol_vendedor->description = 'Usuario que puede hacer ventas de producto o servicios.';
-        $rol_vendedor->save();
+        $rol_vendedor->save();*/
 
 
         $rol_mecanico = new Role;

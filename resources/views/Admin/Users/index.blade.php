@@ -16,14 +16,16 @@
 		  	<th class="text-center">Id</th>
 		  	<th class="text-center">Nombre</th>
 		    <th class="text-center">Email</th>
+		    <th class="text-center">Rol</th>
 		    <th class="text-center">Fecha de creación</th>
 			<th colspan="3" class="text-center">Acción&nbsp;</th>
 		  </tr>
 		  @foreach($users as $user)
 		    <tr>
 		      <td class="text-center">{{ $user->id }}</th>
-		      <td class="text-center">{{ $user->name }}</th>
+		      <td class="text-center">{{ $user->name_user }}</th>
 		      <td class="text-center">{{ $user->email }}</th>
+		      <td class="text-center">{{ $user->name }}</th>	
 		      <td class="text-center">{{ $user->created_at}}</th>	   
 		 
 		      <td>
@@ -45,7 +47,10 @@
 		  @endforeach
 		</table>
 <!-- </div> -->
-    	{!! $users->render() !!}
+	<div class="text-center">
+		 	{!! $users->render() !!}
+	</div>
+   
     </div>
     <div class="col-sm-2">
     	@include('Admin.Users.fragment.aside')

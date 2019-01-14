@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Requests\ProductRequest;
 use Validator;
+use DB;
 
 class ProductController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductController extends Controller
         return view('Products.create');
     }
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         
         $product =  Product::create($request->all())->save();
@@ -35,7 +36,7 @@ class ProductController extends Controller
                 ->with('info','El producto fue ha guardado exitosamente.');
     }
 
-     public function update(ProductRequest $request, $id)
+     public function update(Request $request, $id)
     {
         
         $product = Product::find($id)->update($request->all());   
@@ -62,7 +63,40 @@ class ProductController extends Controller
     {
         $product =  Product::find($id)->delete();
 
-        return back()->with('info','El producto fue eliminado exitosamente.');
+        return back()->with('danger','El producto fue eliminado exitosamente.');
         
     }
+
+
+    public function getProductByCode($code) //Funcion que obtiene un articulo por medio de su codigo
+    {
+     
+
+        $product=DB::table('products')->where('code', $code)->get(['code', 'name',
+             'price']);
+
+
+        if(count($product)>0){
+            return response()->json([
+
+                "datos" => $product,
+                "code" => 200
+
+            ]);
+       
+        }else{
+
+            return response()->json([
+
+            "error" => 'No existen datos con ese codigo.',
+            "code" => 600
+
+            ]);
+
+        }
+         
+        
+    } 
+
+
 }

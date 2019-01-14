@@ -18,7 +18,6 @@
 									<table class="table table-hover">
 										    <thead>
 										        <tr>
-										        <th  class="text-center">Id</th>
 										        <th  class="text-center">Placa</th>
 										        <th  class="text-center">Asunto</th>
 										        <th  class="text-center" style="background: red;color:white">Fecha de la cita</th>
@@ -29,7 +28,6 @@
 										    <tbody>
 										        @foreach ($appointments as $appointment)
 										       <tr>
-										       <td align="center">{{$appointment->id}}</td>
 										       <td align="center">{{$appointment->license_plate}}</td>
 										       <td align="center">{{$appointment->title}}</td>
 										       <td align="center">{{ date('d M Y', strtotime($appointment->date_end))}}</td>
@@ -46,7 +44,7 @@
 										       @endforeach
 										        </tbody>
 										        </table>
-								<div class="col-md-11" align="center" >
+								<div class="text-center" >
 								{!!$appointments->render() !!}
 								<?php 
 								echo phpversion('tidy');

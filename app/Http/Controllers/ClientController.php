@@ -27,10 +27,8 @@ class ClientController extends Controller
          $users = DB::table('role_user')
                 ->join('roles', 'role_user.role_id', '=', 'roles.id')
                 ->join('users', 'role_user.user_id', '=', 'users.id')
-                ->select('users.*')->where('roles.name','ROL_CLIENTE') 
-                ->orderBy('name', 'desc')     
-                
-        ->paginate('8');       
+                ->select('users.*')->where('roles.name_rol','ROL_CLIENTE') 
+                ->orderBy('name', 'desc')->paginate('8');       
    
         return view('Clients.index',compact('users'));
     }
