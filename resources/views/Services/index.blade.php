@@ -5,7 +5,7 @@
     <div class="col-sm-10">
     	<h2>
 
-    		Listado de Servicios
+    		Listado de servicios.
     		<a href="{{ route('Services.create')}}" class="btn btn-success pull-right"><i class="fa fa-plus-square"></i></a>
     	</h2>
 
@@ -27,16 +27,16 @@
                     <td>{{ $service->price }}</td>
                     <td>{{ $service->body}}</td>
                 	<td>
-                		<a href="{{ route('Services.show', $service->id)}}" class="btn btn-link"><i class="fa fa-eye"></i</a>
+                		<a href="{{ route('Services.show', $service->id)}}" class="btn btn-link  btn-xs"><i class="fa fa-eye"></i</a>
                 	</td>
                 	<td>
-                	    <a href="{{ route('Services.edit', $service->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                	    <a href="{{ route('Services.edit', $service->id)}}" class="btn btn-primary  btn-xs"><i class="fa fa-edit"></i></a>
                 	</td>
                 	<td>
                 		<form action="{{ route('Services.destroy', $service->id) }}" method="POST">
                 			{{ csrf_field() }}
                 			<input type="hidden" name="_method" value="DELETE">
-                			<button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                			<button class="btn btn-danger  btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 		</form>
                 	</td>
                 </tr>

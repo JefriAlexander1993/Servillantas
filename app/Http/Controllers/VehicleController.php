@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Vehicle;
 
 class VehicleController extends Controller
 {
@@ -18,7 +19,9 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
+        return view('Vehicles.index', ['vehicles' => Vehicle::orderBy('id','desc')->paginate('8')] );
+
+  
     }
 
     /**
@@ -28,7 +31,7 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //
+        return view('Vehicles.create');
     }
 
     /**
@@ -39,7 +42,10 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vehicle = Vehicle::create($request->all())->save();
+
+              return redirect()->route('Vehicles.index')
+                ->with('info','El vehiculo se ha guardado exitosamente.');
     }
 
     /**
@@ -48,9 +54,9 @@ class VehicleController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show($id)
     {
-        //
+         return view('Vehicles.show' ,[ 'vehicle' => Vehicle::findOrFail($id)]);
     }
 
     /**
@@ -59,9 +65,9 @@ class VehicleController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit($id)
     {
-        //
+         return view('Vehicles.edit' ,[ 'vehicle' => Vehicle::findOrFail($id)]);
     }
 
     /**
@@ -71,9 +77,12 @@ class VehicleController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, $id)
     {
-        //
+         $vehicle = Vehicle::find($id)->update($request->all());   
+
+            return redirect()->route('Vehicles.index')
+                ->with('info','La información del vehiculo fue actualizada exitosamente.');
     }
 
     /**
@@ -82,8 +91,9 @@ class VehicleController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy($id)
     {
-        //
+            $vehicle =  Vehicle::find($id)->delete();
+                return back()->with('danger','El vehiculo fue eliminada exitosamente.');
     }
 }

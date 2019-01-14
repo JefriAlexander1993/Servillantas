@@ -21,16 +21,16 @@
 			         	<td>{{ $role_user->role_id }}</th>
 		
 			            <td>
-                			<a href="{{ route('Role_users.show', $role_user->id)}}" class="btn btn-secundary " title="Ver asigancion de rol a un usuario"><i class="fa fa-eye"></i></a>
+                			<a href="{{ route('Role_users.show', $role_user->id)}}" class="btn btn-secundary  btn-xs" title="Ver asigancion de rol a un usuario"><i class="fa fa-eye"></i></a>
                 		</td>
                 		<td>
-                	    <a href="{{ route('Role_users.edit', $role_user->id)}}" class="btn btn btn-primary " title="Editar una asigancion de rol a un usuario"><i class="fa fa-edit"></i></a>
+                	    <a href="{{ route('Role_users.edit', $role_user->id)}}" class="btn btn btn-primary  btn-xs" title="Editar una asigancion de rol a un usuario"><i class="fa fa-edit"></i></a>
                 		</td>
 			            <td >
 			      			<form action="{{ route('Role_users.destroy', $role_user->id) }}" method="POST">
                 			{{ csrf_field() }}
                 			<input type="hidden" name="_method" value="DELETE">
-                			<button class="btn btn btn-danger " title="Eliminar asigancion de rol a un usuario"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                			<button class="btn btn btn-danger  btn-xs" title="Eliminar asigancion de rol a un usuario"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 			</form>
 			            </td>
 			        </tr>

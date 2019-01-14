@@ -170,8 +170,15 @@
                 <span>Vehiculos</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
+                  <ul  style="display: none;" id="MainMenu" class="treeview-menu">
+                   <li><a href="{{route('Vehicles.index')}}"><i class="fa fa-circle-o"></i>Lista de vehiculos</a></li>
+                 
+                 </ul>
          
             </li>
+
+
+
              <li class="active treeview">
              @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_CLIENTE')=== true)
               <a href="#">

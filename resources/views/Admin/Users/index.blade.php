@@ -7,7 +7,7 @@
     <div class="col-sm-10">
     	<h2>
 
-    		Listado de usuarios
+    		Listado de usuarios.
     		<a href="{{ route('Users.create')}}" class="btn btn-success pull-right" title="Agregar producto"><i class="fa fa-plus-square"></i></a>
     	</h2>
 

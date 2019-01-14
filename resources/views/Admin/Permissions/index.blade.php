@@ -6,7 +6,7 @@
     <div class="col-sm-10">
     	<h2>
 
-    		Listado de Permisos
+    		Listado de permisos.
     		<a href="{{ route('Permissions.create')}}" class="btn btn-success pull-right" title="Agregar producto"><i class="fa fa-plus-square"></i></a>
     	</h2>
 			<table class="table table-hover" style="margin-top:8px">
@@ -24,16 +24,16 @@
 			            <td>{{ $permission->description}}</th>
 		
 			            <td>
-                			<a href="{{ route('Permissions.show', $permission->id)}}" class="btn btn-secundary " title="Ver producto"><i class="fa fa-eye"></i></a>
+                			<a href="{{ route('Permissions.show', $permission->id)}}" class="btn btn-secundary  btn-xs" title="Ver producto"><i class="fa fa-eye"></i></a>
                 		</td>
                 		<td>
-                	    <a href="{{ route('Permissions.edit', $permission->id)}}" class="btn btn btn-primary " title="Editar producto"><i class="fa fa-edit"></i></a>
+                	    <a href="{{ route('Permissions.edit', $permission->id)}}" class="btn btn btn-primary  btn-xs" title="Editar producto"><i class="fa fa-edit"></i></a>
                 		</td>
 			            <td >
 			      			<form action="{{ route('Permissions.destroy', $permission->id) }}" method="POST">
                 			{{ csrf_field() }}
                 			<input type="hidden" name="_method" value="DELETE">
-                			<button class="btn btn btn-danger " title="Eliminar permiso"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                			<button class="btn btn btn-danger  btn-xs" title="Eliminar permiso"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 			</form>
 			            </td>
 			        </tr>
