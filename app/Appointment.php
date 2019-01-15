@@ -19,4 +19,10 @@ class Appointment extends Model
    // ];
    
   //   protected $dateFormat = 'U';
+
+
+      public function user()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

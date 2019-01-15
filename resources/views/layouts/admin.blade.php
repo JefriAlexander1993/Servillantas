@@ -128,7 +128,9 @@
               </a>
              <ul class="treeview-menu">
                 @if(((Auth::user()->hasRole('ROL_CLIENTE')=== true) || (Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)))
+                <li class="treeview"><a href="{{route('Appointments.index')}}"><i class="fa fa-circle-o"></i> Lista de citas</a></li>
                     <li class="treeview"><a href="{{route('Appointments.create')}}"><i class="fa fa-circle-o"></i> Agendar</a></li>
+
                 @endif
                 <li><a href="{{url('Calendary')}}"><i class="fa fa-circle-o"></i> Programadas</a></li>
               </ul>
@@ -217,7 +219,8 @@
                 </a>
                     <ul  style="display: none;" id="MainMenu" class="treeview-menu">
                    <li><a href="{{route('Mechanics.index')}}"><i class="fa fa-circle-o"></i>Lista de mecanicos</a></li>
-                    <li><a href="{{route('Mechanics.show', Auth::id() )}}"><i class="fa fa-circle-o"></i>Ver mi perfil</a></li>
+                   <li><a href="{{route('Mechanics.show', Auth::id() )}}"><i class="fa fa-circle-o"></i>Ver mi perfil</a></li>
+                   <li><a href="{{url('Mechanics/assignationShow', Auth::id() )}}"><i class="fa fa-circle-o"></i>Citas asignadas.</a></li>
                  </ul>
                 @else
                    <li class="treeview">

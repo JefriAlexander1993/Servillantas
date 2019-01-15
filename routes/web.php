@@ -40,6 +40,9 @@ Route::resource('Appointments','AppointmentController');
 Route::resource('Users','UserController');
 Route::post('Users/register','UserController@register')->name('Users.register');
 
+Route::get('Appointments/assignation/{id}','AppointmentController@assignation');
+Route::put('Appointments/assignationUpdate/{id}','AppointmentController@assignationUpdate')->name('Appointments.assignationUpdate');
+Route::get('Mechanics/assignationShow/{id}','MechanicController@assignedShow');
 Route::resource('Roles','RoleController');
 
 Route::resource('Permission_roles','PermissionRoleController');

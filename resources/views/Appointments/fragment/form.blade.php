@@ -11,7 +11,7 @@
 
 <div class="form-group">
 	{!! Form::label('date_end', 'Fecha de la cita')!!}
-	<input type="datetime-local" name="date_end" class="form-control  date" >
+	<input type="datetime-local" name="date_end" class="form-control  date" value="">
 
 </div>
 

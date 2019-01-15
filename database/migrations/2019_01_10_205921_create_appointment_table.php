@@ -19,8 +19,7 @@ class CreateAppointmentTable extends Migration
                 $table->increments('id');
                 $table->string('license_plate');
                 $table->string('title');
-                $table->string('color');
-          
+                $table->string('color');          
                 $table->dateTime('date_end');
                 $table->integer('user_id')->unsigned()->nullable();
                 $table->foreign('user_id')->references('id')->on('users');
