@@ -40,6 +40,15 @@ class UserTableSeeder extends Seeder
         $administrador->save();
         $administrador->roles()->attach($rol_administrador);
 
+        $administrador = new User;
+        $administrador->name_user = 'Administrador';
+        $administrador->lastname = 'Principal';
+        $administrador->email = 'administrador@example.com';
+        $administrador->password = bcrypt('administrador');
+        $administrador->phone = '';
+        $administrador->save();
+        $administrador->roles()->attach($rol_mecanico);
+
 
      /*   $vendedor = new User;
         $vendedor->name = 'Vendedor';
