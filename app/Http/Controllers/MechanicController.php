@@ -20,9 +20,10 @@ class MechanicController extends Controller
            $mechanics1 = DB::table('role_user')
                 ->join('roles', 'role_user.role_id', '=', 'roles.id')
                 ->join('users', 'role_user.user_id', '=', 'users.id')
-                ->select('users.*')->where('roles.name_rol','ROL_MECANICO') 
+                ->select('users.*')->where('roles.name','ROL_MECANICO') 
                 ->orderBy('id', 'desc')     
-                ->paginate('8');       
+                ->paginate('8');    
+
    
         return view('Mechanics.index',compact('mechanics1'));
     }

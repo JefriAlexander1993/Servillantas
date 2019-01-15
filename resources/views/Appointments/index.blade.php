@@ -22,27 +22,33 @@
 										        <th  class="text-center">Asunto</th>
 										        <th  class="text-center" style="background: red;color:white">Fecha de la cita</th>
 										        <th  class="text-center" style="background: red;color:white">Hora de la cita</th>
-										        
+										        <th  class="text-center" >Estado</th>
 										        <th  class="text-center"colspan="4" >Acción</th>	
 										        </tr>
 										        </thead>
 										    <tbody>
 										        @foreach ($appointments as $appointment)
-										       <tr>
+										       <tr      @if($appointment->user_id == null)
+										       				 style="background-color:#EF5350;color:#fff",
+										       			@else
+										       			 style="background-color:green;color:#fff",
+
+       													@endif
+
+										       	>
 										       <td align="center">{{$appointment->license_plate}}</td>
 										       <td align="center">{{$appointment->title}}</td>
 										       <td align="center">{{ date('d M Y', strtotime($appointment->date_end))}}</td>
 										       <td align="center">{{ date('H:i', strtotime($appointment->date_end))}}</td>
+										       <td align="center">{{$appointment->state}}</td>	
+										     	<td><a  type="button" title="Asignar cita." id="asignar" href="{{url('Appointments/assignation', $appointment->id)}}" class="btn bg-olive btn-flat btn-xs"><i class="fa fa-check-square-o"></i></a></td>
+										       <td><a title="Editar cita." id="edit" href="{{route('Appointments.edit', $appointment->id)}}" class="btn btn-sm btn-default  btn-xs"><i class="fa fa-edit"></i></a></td>
 										      
-
-										     	   <td><a title="Asignar cita." id="edit" href="{{url('Appointments/assignation', $appointment->id)}}" class="btn bg-olive btn-flat btn-xs"><i class="fa fa-check-square-o"></i></a></td>
-										       <td><a title="Editar cita." id="edit" href="{{route('Appointments.edit', $appointment->id)}}" class="btn btn-sm btn-secundary  btn-xs"><i class="fa fa-edit"></i></a></td>
-										      
-											   <td><a title="Ver appointment." href="{{route('Appointments.show', $appointment->id)}}" class="btn btn-primary  btn-xs"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+											   <td><a title="Ver cita." href="{{route('Appointments.show', $appointment->id)}}" class="btn btn-primary  btn-xs"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
 										       <td><form action="{{route('Appointments.destroy', $appointment->id)}}" method="POST">
 										       {{csrf_field()}} <!--Toque para que sea eliminado por la aplicacion-->
 										       <input type="hidden" name="_method" value="DELETE">	
-											   <button title="Eliminar appointment." class="btn btn-xs btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>	
+											   <button title="Eliminar cita." class="btn btn-xs btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>	
 											   </form>
 											   </td>
 										       </tr>

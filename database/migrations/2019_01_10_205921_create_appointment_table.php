@@ -21,6 +21,8 @@ class CreateAppointmentTable extends Migration
                 $table->string('title');
                 $table->string('color');          
                 $table->dateTime('date_end');
+                $table->string('state')->default('No asignada');
+
                 $table->integer('user_id')->unsigned()->nullable();
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->timestamps();   

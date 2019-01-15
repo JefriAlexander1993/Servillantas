@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-   @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true) 
+ 
 @section('content')
 
     <div class="col-sm-10">
@@ -22,7 +22,7 @@
 		  @foreach($mechanics1 as $mechanic)
 		    <tr>
 		      <td class="text-center">{{ $mechanic->nuip }}</th>	
-		      <td class="text-center">{{ $mechanic->name }}</th>
+		      <td class="text-center">{{ $mechanic->name_user }}</th>
 		      <td class="text-center">{{ $mechanic->lastname }}</th>	
 		      <td class="text-center">{{ $mechanic->email }}</th>
 		      <td class="text-center">{{ $mechanic->address }}</th>	
@@ -59,9 +59,7 @@
     <div class="col-sm-2">
     	@include('Mechanics.fragment.aside')
     </div>
-  @else
-    		<h2>No estas autorizado.</h2>
-   @endif
+  
 @endsection
 
 

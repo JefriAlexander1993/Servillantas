@@ -21,19 +21,8 @@ class AppointmentController extends Controller
 
     public function index(){
   
-        $appointments=  Appointment::orderBy('id','desc')->paginate('8');
-
-          /*  $users=   DB::table('role_user')
-                        ->join('roles', 'role_user.role_id', 'roles.id')
-                        ->join('users', 'role_user.user_id', 'users.id')
-                        ->select('users.name_user')->get(); */
-
-                    
-                      /*  DB::table('users')
-                            ->join('role_user', 'role_user.user_id', 'users.id')
-                            ->join('roles', 'role_user.role_id', 'roles.id')->get();  */    
-   
-       return view('Appointments.index', compact('appointments')); 
+        $appointments=  Appointment::orderBy('id','asc')->paginate('8');   
+                return view('Appointments.index', compact('appointments')); 
 
 
     }
@@ -57,8 +46,9 @@ class AppointmentController extends Controller
     public function assignationUpdate(Request $request , $id){
 
         $appointment =   Appointment::where('id','=',$id)->first();
+        $appointment->user_id = $request->user_id;
+        $appointment->state ='Asignada';
 
-           $appointment->user_id = $request->user_id;
 
             $appointment->save(); 
 

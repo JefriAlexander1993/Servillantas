@@ -135,18 +135,25 @@
                 <li><a href="{{url('Calendary')}}"><i class="fa fa-circle-o"></i> Programadas</a></li>
               </ul>
             </li>
+           @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)  
             <li class="treeview">
-
+     
               <a href="#">
-                 <i class="fa fa-car"></i>
+                 <i class="fa  fa-money"></i>
                    <span>Ventas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
                   <ul  style="display: none;" id="MainMenu" class="treeview-menu">
-                    <li><a href="{{route('Sales.index')}}"><i class="fa fa-circle-o"></i>Lista de ventas</a></li>    
-                  </ul>
-         
+                   
+                      <li><a href="{{route('Sales.index')}}"><i class="fa fa-circle-o"></i>Lista de ventas</a></li>  
+                  </ul>    
             </li>
+             @else
+                 <li class="treeview">
+                          <a href="#"><i class="fa fa-th"></i> <span style="color:#fff">No estas autorizado.</span></a>
+                 </li>
+              @endif 
+       
           
             <li class="treeview">
                  @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
@@ -159,11 +166,9 @@
                  <li class="treeview">
                           <a href="#"><i class="fa fa-th"></i> <span style="color:#fff">No estas autorizado.</span></a>
                  </li>
-                 @endif    
-        
-                </a>
-              
+                 @endif                  
             </li>
+
              <li class="treeview">
                   @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
                <a href="{{route('Services.index')}}"><i class="fa  fa-file-text-o"></i>
