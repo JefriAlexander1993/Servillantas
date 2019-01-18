@@ -4,7 +4,7 @@
 
     <div class="col-sm-12">
     	<h2>
-            Nueva ventas
+            <strong>Nueva ventas</strong>
                 <a href="{{ route('Sales.index')}}" class="btn btn-default pull-right" title="Listado de todos los productos."><i class="fa fa-list-ol"></i></a>   
         </h2>
 

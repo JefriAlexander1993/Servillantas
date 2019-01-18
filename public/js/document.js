@@ -1,6 +1,12 @@
-$('#btn-sale').on('click', function() {
 
-        if ($('#code').val() == '') {
+$(document).ready(function() {
+ 
+
+});
+
+$('#btn-addProduct').on('click', function() {
+
+        if ($('#codeProduct').val() == '') {
 
          swal({
               title: "Error en el momento de agregar!",
@@ -24,30 +30,63 @@ $('#btn-sale').on('click', function() {
             }
         }
 
-        addRowSeller();
+        addRowProduct();
+   
 
 });
 
+/*--------------------------------------------------------------------*/
+$('#btn-addService').on('click', function() {
 
-var listcode = new Array();
+        if ($('#codeService').val() == '') {
 
+         swal({
+              title: "Error en el momento de agregar!",
+              text: "Vuelve a intentarlo, recuerda llenar el campo de codigo, no puede estar vacio, vuelve a seleccionarlo.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+            return false;
+        }
+
+        for (i = 0; i < listcode1.length; i++) {
+            if (listcode1[i] == $('#code').val()) {
+   
+        swal({
+              title: "Error en el momento de agregar!",
+              text: "Vuelve a intentarlo, no se puede agregar el mismo codigo.",
+              icon: "warning",
+              button: "Cerrar!",
+                  });
+                return false;
+            }
+        }
+
+        addRowService();
+     
+});
+
+var listcode = new Array
+var listcode1 = new Array();
 /*************    Adicionar filas de compra    ************/
 
-function addRowSeller() {
+function addRowProduct() {
 
     $.ajax({
-        url: $('#url_product').val() + '/' + $('#code').val(),
+        url: $('#url_product').val() + '/' + $('#codeProduct').val(),
         dataType: 'json',
         type: 'GET',
         success: function(data) {
             if (data.code === 200) {
                 $(data.datos).each(function(index, el) {
+
+          
                    // var totaIva = parseFloat(el.sale_price) * parseFloat(el.iva) / 100;
                     
                     var row = '<tr id="fila' + el.id + '">\n\
     <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="code' + el.id + '" name="code[]" value="' + el.code + '"></td>\n\
     <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="name' + el.id + '" name="name[]" value="' + el.name + '"></td>\n\
-    <td align="center"><input style="border:none;text-align:center"  type="number" id="quantity' + el.id + '" min="1" pattern="^[0-9]+"  name="quantity[]" onkeyup="totalizar(' + el.id + ');" value="1"></td>\n\
+    <td align="center"><input style="border:none;text-align:center"  type="number" id="quantity' + el.id + '" min="1" pattern="^[0-9]+"  name="quantity[]" onkeyup="totalizarRow(' + el.id + ')"; value="1"></td>\n\
     <td align="center"><input style="border:none;text-align:center" readonly="readonly" type="text" id="price' + el.id + '" name="price[]" value="' + el.price + '"></td>\n\
     <td align="center"><input readonly="readonly"  style="border:none;text-align:center" type="text" id="total' + el.id + '" name="total[]" step="0.01" value="' + el.price+ '"></td>\n\
     <td align="center"><a id="btn-borrar' + el.id + '" class="btn btn-danger btn-sm" onclick="deleteRow(' + el.id + ')" ><i class="fa fa-trash" ></i></a></td>\n\
@@ -100,34 +139,182 @@ function addRowSeller() {
     });
 }
 
+/*************    Adicionar filas de servicios    ************/
+
+function addRowService() {
+
+    $.ajax({
+        url: $('#url_service').val() + '/' + $('#codeService').val(),
+        dataType: 'json',
+        type: 'GET',
+        success: function(data) {
+            if (data.code === 200) {
+                $(data.datos).each(function(index, el) {
+
+          
+                   // var totaIva = parseFloat(el.sale_price) * parseFloat(el.iva) / 100;
+                    
+                    var row = '<tr id="fila' + el.id + '">\n\
+    <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="code' + el.id + '" name="code[]" value="' + el.code + '"></td>\n\
+    <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="name' + el.id + '" name="name[]" value="' + el.name + '"></td>\n\
+    <td align="center"><input style="border:none;text-align:center"  type="number" id="quantityService' + el.id + '" min="1" pattern="^[0-9]+"  name="quantity[]" onkeyup="totalizarService(' + el.id + ')"; value="1"></td>\n\
+    <td align="center"><input style="border:none;text-align:center" readonly="readonly" type="text" id="priceService' + el.id + '" name="price[]" value="' + el.price + '"></td>\n\
+    <td align="center"><input readonly="readonly"  style="border:none;text-align:center" type="text" id="totalService' + el.id + '" name="total[]" step="0.01" value="' + el.price+ '"></td>\n\
+    <td align="center"><a id="btn-borrar' + el.id + '" class="btn btn-danger btn-sm" onclick="deleteRow(' + el.id + ')" ><i class="fa fa-trash" ></i></a></td>\n\
+    </tr>';
+          
+
+                    $('#tbl-service tbody').append(row);
+
+                    var c = parseInt($('#quantityService').val()) + 1;
+                    $('#quantityService').val(c);
+                    //Corregir 
+                    
+                    
+                        swal("¡Buen trabajo, se ha agregado exitosamente el producto, recuerda solo se puede modificar cantidad!", "Haz clic en el botón!", "success");
+       
+                   var a = listcode1.push($('#codeService').val());
+                   return a;
+
+                   
+                  //  toastr.success('Se ha agregado un articulo en Compra!.')
+
+
+
+
+                });
+
+            } else {
+                if (data.code === 600) {
+                 swal({
+                        title: "Error en el momento de buscar!",
+                        text: "Vuelve a intentarlo, el codigo ingresado no esta registrado.",
+                        icon: "warning",
+                        button: "Cerrar!",
+                      });
+                return false;
+            }
+        } 
+
+            
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+
+            data = {
+                error: jqXHR + ' - ' + textStatus + ' - ' + errorThrown
+            }
+            $('#modal' + 1).modal('toggle');
+            $('body').append('<div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title" id="myModalLabel">ERROR EN TRANSACCIÓN</h4></div><div class="modal-body">' + data.error + '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button></div></div></div></div>');
+            $('#modalError').modal({ show: true });
+        }
+    });
+}
 
 
 /************ Totaliza todos los valores de la fila agregada ************/
-function totalizar(id) {
+
+function totalizarRow(id) {
 
     var cantidad = $('#quantity' + id).val();
+ 
+ 
 
-    if (cantidad != '') {
+    if (cantidad != '' ) {
 
         var precio = $('#price' + id).val();
+      
+        var total = precio * cantidad;
+                 $('#total' + id).val(total);
+        
+        totalProduct = 0;
 
-          var totalSale = precio * cantidad;
-
-                 $('#total' + id).val(totalSale);
-
-        var totalSale = 0;
         var fila = $("#tbl-sale > tbody > tr").each(function(index, element) {
             var idfila = element.id.replace("fila", "#total"); /*Debe ser este*/
-            totalSale += parseInt($(idfila).val());
+            totalProduct += parseInt($(idfila).val());
 
         });
-        $('#totalSale').val(totalSale);
+
+
+             $('#totalProduct').val(totalProduct);
+             totalSale();
     } else {
-        $('#totalSale' + id).val(0);
+        $('#total' + id).val(0);
+      
     }
 
 
 }
+
+
+/************ Totaliza todos los valores de la fila agregada ************/
+
+
+
+function totalizarService(id) {
+
+   
+    var cantidadServicio = $('#quantityService' + id).val();
+
+    if ( cantidadServicio != '') {
+
+      
+        var precioServicio = $('#priceService' + id).val();
+
+     
+        var totalServicios = precioServicio * cantidadServicio;
+
+              
+            $('#totalService' + id).val(totalServicios);
+        
+            totalService =0;
+            var fila = $("#tbl-service > tbody > tr").each(function(index, element) {
+            var id = element.id.replace("fila", "#totalService"); /*Debe ser este*/
+            totalService += parseInt($(id).val());
+           
+        });
+                     $('#totalService').val(totalService);
+                     totalSale();
+
+    } else {
+        $('#totalService' + id).val(0);
+        
+    }
+
+
+}
+function totalSale() {
+
+     
+        if($('#totalService').val() == null || $('#totalService').val()== 0){
+
+           totalp= $('#totalProduct').val();
+
+             $('#totalSale').val(totalp);
+        }else if($('#totalProduct').val() == null || $('#totalProduct').val()== 0){
+
+          totals= $('#totalService').val();
+
+             $('#totalSale').val(totals);
+
+        }else{
+
+        totalSale = 0;  
+        totalS = $('#totalService').val();
+        totalP =$('#totalProduct').val();
+        totalSale = parseInt(totalS) +parseInt(totalP);
+
+             $('#totalSale').val(totalSale);
+
+
+        }
+
+
+
+
+
+        
+}
+
 
 
 function deleteRow(id, e) {
@@ -137,21 +324,25 @@ function deleteRow(id, e) {
       
         $('#sale').val(file)
         $('#code').val('');
-        var totalVenta = 0;
+        var totalProduct = 0;
         var fila = $("#tbl-sale > tbody > tr").each(function(index, element) {
             var idfila = element.id.replace("fila", "#total"); /*Debe ser este*/
-            totalVenta = parseInt($(idfila).val());
+            totalProduct = parseInt($(idfila).val());
 
         });
-        $('#totalSale').val(totalVenta);
 
-        listcodigo.pop();
+        result =0;
+        result = parseInt($('#totalSale').val()) - parseInt($('#totalProduct'))
+        $('#totalSale').val(result);
+
+        listcode.pop();
 
 
-        if (isNaN(totalVenta)) {
-            $('#totalSale').val(0);
+        if (isNaN(result)) {
+            $('#totalSale').val($('#totalService').val());
+
         } else {
-            $('#totalSale').val(e);
+            $('#totalProduct').val(e);
 
         }
           swal({
@@ -163,15 +354,30 @@ function deleteRow(id, e) {
  
 
 
-        $('#totalSale').val(totalVenta);
+        $('#totalProduct').val(totalProduct);
 
-        for (i = 0; i < listcodigo.length; i++) {
-            if (listcodigo[i] == id) {
+        for (i = 0; i < listcode.length; i++) {
+            if (listcode[i] == id) {
 
-                listcodigo.splice(i);
+                listcode.splice(i);
                 return false;
 
             }
         }
     }
 }
+
+$(".accordion-titulo").click(function(){
+    
+   var contenido=$(this).next(".accordion-content");
+      
+   if(contenido.css("display")=="none"){ //open   
+      contenido.slideDown(250);     
+      $(this).addClass("open");
+   }
+   else{ //close    
+      contenido.slideUp(250);
+      $(this).removeClass("open");  
+  }
+              
+});

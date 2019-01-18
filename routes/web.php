@@ -54,3 +54,4 @@ Route::resource('Mechanics','MechanicController');
 Route::resource('Sales','SaleController');
 
 Route::get('Product/getProduct/{code}' , 'ProductController@getProductByCode')->name('Product.getcode');
+Route::get('Service/getService/{code}' , 'ServiceController@getServiceByCode')->name('Service.getcode');

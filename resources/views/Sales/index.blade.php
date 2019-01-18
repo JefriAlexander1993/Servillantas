@@ -9,7 +9,7 @@
 <div class="col-sm-2">
 <div class="form-group">
 {!!Form:: label('totalSales','Total de ventas')!!}
-<input class="form-control" style="align:right" disabled  value=""  type="text">
+<input class="form-control" style="align:right" disabled  value="{{$totalSales}}"  type="text">
 </div>
 </div>
 </div>
@@ -46,12 +46,16 @@
 			   <td align="center">{{$sale1->id}}</td>
 			   <td align="center">{{$sale1->created_at}}</td>
 		       <td align="center">{{$sale1->totalsale}}</td>
-			   <td align="center"> <a href="{{route('Sales.show', $sale1->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hcodigoden="true"></i></a></td>
+			   <td align="center"> <a href="{{route('Sales.show', $sale1->id)}}" class="btn btn-xs btn-default"><i class="fa fa-eye" aria-hcodigoden="true"></i></a>
+			   </td>
+			   	<td align="center">
+               <a href="{{ route('Sales.edit', $sale1->id)}}" class="btn btn-primary  btn-xs"><i class="fa fa-edit"></i></a>
+               </td>
 			   <td align="center">
 			   <form action="{{route('Sales.destroy', $sale1->id)}}" method="POST">
 		       {{csrf_field()}} <!--Toque para que sea eliminado por la aplicacion-->
 		       <input type="hidden" name="_method" value="DELETE">	
-			   <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>	
+			   <button class="btn btn-xs btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>	
 			   </form>
 			   </td>
 		   </tr>

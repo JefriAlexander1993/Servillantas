@@ -23,7 +23,7 @@ class CreateSalesProductsTable extends Migration
                  
                  $table->foreign('sale_id')->references('id')->on('sales')
                  ->onUpdate('cascade')->onDelete('cascade');
-                 $table->foreign('product_id')->references('id')->on('pruducts')
+                 $table->foreign('product_id')->references('id')->on('products')
                      ->onUpdate('cascade')->onDelete('cascade');
               $table->timestamps();  
           }); 

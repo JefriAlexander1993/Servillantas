@@ -235,6 +235,7 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Uuid' => Webpatser\Uuid\Uuid::class,
 
 
     ],

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Service;
 use App\Http\Requests\ServicioRequest;
+use DB;
 
 class ServiceController extends Controller
 {
@@ -15,7 +16,7 @@ class ServiceController extends Controller
 
     public function index()
     {
-       
+ 
         return view('Services.index', ['services1'=>Service::orderBy('id','DESC')->paginate('8')]); 
 
     }
@@ -62,4 +63,32 @@ class ServiceController extends Controller
       return back()->with('info','El servicio fue eliminado');
         
     }
+
+     public function getServiceByCode($code) //Funcion que obtiene un articulo por medio de su codigo
+    {
+     
+
+        $service =DB::table('services')->where('code', $code)->get(['id','code', 'name',
+             'price']);
+        
+        if(count($service)>0) {
+            return response()->json([
+
+                "datos" => $service,
+                "code" => 200
+             ]);
+
+        }else{
+
+            return response()->json([
+
+            "error" => 'No existen datos con ese codigo.',
+            "code" => 600
+
+            ]);
+
+        }
+         
+        
+    } 
 }

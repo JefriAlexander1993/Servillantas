@@ -72,7 +72,7 @@ class ProductController extends Controller
     {
      
 
-        $product=DB::table('products')->where('code', $code)->get(['code', 'name',
+        $product=DB::table('products')->where('code', $code)->get(['id','code', 'name',
              'price']);
 
 

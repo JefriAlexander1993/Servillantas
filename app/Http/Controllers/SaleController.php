@@ -19,7 +19,8 @@ class SaleController extends Controller
     public function index()
     {
 
-        return view('Sales.index', ['sales0'=>Sale::orderBy('id','desc')->paginate('8')]);
+
+        return view('Sales.index', ['sales0'=>Sale::orderBy('id','desc')->paginate('8'),'totalSales' => DB::table('sales')->select('totalsale')->sum('totalsale') ]);
     }
 
     /**
@@ -77,7 +78,14 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+         //$sale = Sale::find($id); 
+
+         $detalles = DB::table('sales_products')
+                ->join('products','products.id','=', 'sales_products.product_id')
+                ->select('sales_products.*','products.name')->where('sales_products.sale_id', '=', $id)
+                ->orderBy('created_at','desc')->paginate('3');
+                
+                return view('Sales.show', compact('detalles'));
     }
 
     /**
@@ -88,7 +96,7 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -111,6 +119,7 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sale = Sale::find($id)->delete();
+           return back()->with('danger','La venta fue eliminada exitosamente.');
     }
 }
