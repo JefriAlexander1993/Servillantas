@@ -8,6 +8,7 @@ use App\Sales_products;
 use App\Product;
 use Auth;
 use DB;
+use App\Service;
 
 class SaleController extends Controller
 {
@@ -57,14 +58,28 @@ class SaleController extends Controller
                 
                 $sale_product->quantity=$request->quantity[$x];
                 $sale_product->price=$request->price[$x];
-                $sale_product->total=$request->total[$x];
+                $sale_product->total=$request->totalProduct[$x];
                 $sale_product->sale_id= $sale->id;
-
-
-                $product =Product::where('code','=',$request->code[$x])->first() ;
+         
+                $product =Product::where('code','=',$request->codeProduct[$x])->first() ;
                 $sale_product->product_id=$product->id;
                 $sale_product->save();
                                                     }
+
+            for($x = 0; $x < $request->quantityService; $x++) { // Ciclo el cual almacena todos los servicios entrantes en la venta
+                  
+                $sale_service= new Sales_products;     
+                $sale_service->quantity=$request->quantityS[$x];
+                $sale_service->price=$request->priceService[$x];
+                $sale_service->total=$request->totalService[$x];
+                $sale_service->sale_id= $sale->id;
+
+
+                $service =Service::where('code','=',$request->codeService[$x])->first() ;
+                $sale_service->service_id=$service->id;
+                $sale_service->save();
+                                                    }
+
         return redirect()->route('Sales.index')     // Redirige a la ruta venta.index (venta/index)
                 ->with('info', 'La venta fue guardada.');                                             
 
@@ -80,12 +95,18 @@ class SaleController extends Controller
     {
          //$sale = Sale::find($id); 
 
-         $detalles = DB::table('sales_products')
+        $detalles = DB::table('sales_products')
                 ->join('products','products.id','=', 'sales_products.product_id')
-                ->select('sales_products.*','products.name')->where('sales_products.sale_id', '=', $id)
-                ->orderBy('created_at','desc')->paginate('3');
+                ->select('sales_products.*','products.name','products.body')->where('sales_products.sale_id', '=', $id)
+                ->orderBy('created_at','desc')->paginate('2');
+
+        $detallesServicios = DB::table('sales_products')
+                 ->join('services','services.id','=', 'sales_products.service_id')
+                ->select('sales_products.*','services.name','services.body')->where('sales_products.sale_id', '=', $id)
+                ->orderBy('created_at','desc')->paginate('2');     
+
                 
-                return view('Sales.show', compact('detalles'));
+                return view('Sales.show', compact('detalles', 'detallesServicios'));
     }
 
     /**
@@ -95,8 +116,16 @@ class SaleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        
+    {   
+            $sale = Sale::findOrFail($id); 
+         
+           $detalles = DB::table('sales_products')
+                ->join('products','products.id','=', 'sales_products.product_id')
+                ->select('products.*')->where('sales_products.sale_id', '=', $sale->id)->get();
+
+
+              return view('Sales.edit', compact('detalles'));
+
     }
 
     /**

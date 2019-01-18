@@ -1,30 +1,73 @@
 @extends('layouts.admin')
 
 @section('content')
-    
-    <div class="col-sm-10">
-    	
-    	@foreach ($detalles as $detalle)
-    	<h2>
-            <b>Nombre:</b> {{ $detalle->name }}
-          
-        </h2>
-          <a href="{{ route('Sales.index')}}" class="btn btn-default pull-right" title="Listado de todos los productos."><i class="fa fa-list-ol"></i></a>
-        <p>
-           <b> Codigo:</b> {{ $detalle->quantity}}
-        </p>
-        <p>
-           <b> Precio:</b>   {!! $detalle->price !!}
-        </p>
-        <p>
-           <b> Descripción:</b>   {!! $detalle->total !!}
-        </p>
-        @endforeach
-    </div>
-    <div class="text-center">
-	{!! $detalles->render() !!}
-	</div>
-    <div class="col-sm-2">
-    	@include('Sales.fragment.aside')
-    </div>
+<div class="row">
+<div class="col-sm-10">
+        @include('Sales.fragment.aside')
+</div>
+<div class="col-sm-2">
+      <a href="{{ route('Sales.index')}}" class="btn btn-default pull-right" title="Listado de todos los productos."><i class="fa fa-list-ol"></i></a>
+</div>
+</div>  
+  <div class="row">
+        <div class="col-sm-6">  
+            <div class="panel panel-primary">
+                  <div class="panel-heading"><strong>Productos</strong></div>
+                  <div class="panel-body">
+                  
+                        @foreach ($detalles as $detalle1)
+
+                             <div class="col-sm-6">  
+                                <b>Nombre:</b> {{ $detalle1->name }}           
+                            <p>
+                               <b> Codigo:</b> {{ $detalle1->quantity}}
+                            </p>
+                            <p>
+                               <b> Precio:</b>   {!! $detalle1->price !!}
+                            </p>
+                            <p>
+                               <b> Descripción:</b>   {!! $detalle1->body !!}
+                            </p>
+                             </div>
+
+                        @endforeach
+
+                       </div> 
+                 
+                  <div class="text-center">
+                    {!! $detalles->render() !!}
+                  </div>
+            </div>
+        </div>
+  
+  
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><strong>Servicios</strong></div>
+                  <div class="panel-body">
+                    @foreach ($detallesServicios as $detalle)
+
+                        
+                         <div class="col-sm-6">  
+                                <b>Nombre:</b> {{ $detalle->name }}
+                            <p>
+                               <b> Codigo:</b> {{ $detalle->quantity}}
+                            </p>
+                            <p>
+                               <b> Precio:</b>   {!! $detalle->price !!}
+                            </p>
+                            <p>
+                               <b> Descripción:</b>   {!! $detalle->body !!}
+                            </p>
+                         </div>   
+                    @endforeach
+                </div>
+                 <div class="text-center">
+                 {!! $detallesServicios->render() !!}
+                 </div> 
+            </div>        
+        </div>
+  
+   </div> 
+ 
 @endsection

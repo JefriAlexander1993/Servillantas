@@ -7,12 +7,12 @@
 </div>
 <div class="col-sm-4" >
 	<div class="form-group">
-	<input class="form-control" id="totalProduct" type="hidden" name="totalProduct" readonly="readonly" value="0" >
+	<input class="form-control" name="totalProduct" id="totalProduct" type="hidden" name="totalProduct" readonly="readonly" value="0" >
 	</div>
 </div>
 <div class="col-sm-4" >
 	<div class="form-group">
-		<input class="form-control" type="hidden" id="totalService" name="totalService" readonly="readonly" value="0" >
+		<input class="form-control" name="totalService" type="hidden" id="totalS" name="totalService" readonly="readonly" value="0" >
 	</div>
 </div>
 </div>
@@ -26,7 +26,7 @@
 
 						<div class="form-group">
 						{!!Form::label('code','Codigo(*)')!!}
-						{!!Form::number('code',null,['class'=>'form-control', 'placeholder'=>'Ej: 12' ,'id'=>'codeProduct', 'name'=>'code','min'=>'1', 'title'=>'Ingresa un codigo de un articulo existente'])!!}
+						{!!Form::number('code',null,['class'=>'form-control', 'placeholder'=>'Ej: 12' ,'id'=>'codeProduct', 'name'=>'codeProduct','min'=>'1', 'title'=>'Ingresa un codigo de un articulo existente'])!!}
 						</div>
 
 						<div class="form-group">
@@ -34,7 +34,7 @@
 						</div>
 
 						<div class="form-group">
-						<input  value="0" type="hidden" id="sale" name="cantidadarticulos" class="form-control" >
+						<input  value="0" type="text" id="sale" name="cantidadarticulos" class="form-control" >
 						</div>
 
 							
@@ -67,7 +67,7 @@
 						<div class="form-group" >
 							<input id="url_service" type="hidden" value="{{url('Service/getService/')}}">
 									{!!Form::label('code','Codigo(*)')!!}
-									{!!Form::number('code',null,['class'=>'form-control', 'placeholder'=>'Ej: 12' ,'id'=>'codeService', 'name'=>'code','min'=>'1', 'title'=>'Ingresa un codigo de un articulo existente'])!!}
+									{!!Form::number('code',null,['class'=>'form-control', 'placeholder'=>'Ej: 12' ,'id'=>'codeService', 'name'=>'codeService','min'=>'1', 'title'=>'Ingresa un codigo de un articulo existente'])!!}
 						</div>
 
 								<div class="form-group">
@@ -75,7 +75,7 @@
 								</div>
 
 								<div class="form-group">
-								<input  value="0" type="hidden" id="quantityService" name="quantityServices" class="form-control" >
+								<input  value="0" type="text" id="quantityService" name="quantityServices" class="form-control" >
 								</div>
 
 									<table class="table table-header" id="tbl-service">

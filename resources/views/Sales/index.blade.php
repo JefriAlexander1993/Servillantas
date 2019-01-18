@@ -14,15 +14,6 @@
 </div>
 </div>
 
-{!!Form::open(['route'=>'Sales.index', 'method'=>'GET','class'=>'navbar-form'])!!}
-<div class="col-sm-5 input-group">
-{!!Form::number('id',null,['class'=>'form-control' , 'placeholder'=>'Buscar..', 'aria-describedby'=>'search'])!!}
-<span class="input-group-addon" id="search">
-<i class="fa fa-search" aria-hidden="true"></i>
-</span>
-</div>
-{!!Form::close()!!}
-
 <div class="row">
 <div class="col-sm-8" style="text-align:center"><h2><strong>LISTADO DE VENTAS.</strong></h2>
 </div>

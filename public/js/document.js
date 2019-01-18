@@ -18,7 +18,7 @@ $('#btn-addProduct').on('click', function() {
         }
 
         for (i = 0; i < listcode.length; i++) {
-            if (listcode[i] == $('#code').val()) {
+            if (listcode[i] == $('#codeProduct').val()) {
    
         swal({
               title: "Error en el momento de agregar!",
@@ -50,7 +50,7 @@ $('#btn-addService').on('click', function() {
         }
 
         for (i = 0; i < listcode1.length; i++) {
-            if (listcode1[i] == $('#code').val()) {
+            if (listcode1[i] == $('#codeService').val()) {
    
         swal({
               title: "Error en el momento de agregar!",
@@ -154,13 +154,13 @@ function addRowService() {
           
                    // var totaIva = parseFloat(el.sale_price) * parseFloat(el.iva) / 100;
                     
-                    var row = '<tr id="fila' + el.id + '">\n\
+                    var row = '<tr id="fila1' + el.id + '">\n\
     <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="code' + el.id + '" name="code[]" value="' + el.code + '"></td>\n\
     <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="name' + el.id + '" name="name[]" value="' + el.name + '"></td>\n\
-    <td align="center"><input style="border:none;text-align:center"  type="number" id="quantityService' + el.id + '" min="1" pattern="^[0-9]+"  name="quantity[]" onkeyup="totalizarService(' + el.id + ')"; value="1"></td>\n\
-    <td align="center"><input style="border:none;text-align:center" readonly="readonly" type="text" id="priceService' + el.id + '" name="price[]" value="' + el.price + '"></td>\n\
+    <td align="center"><input style="border:none;text-align:center"  type="number" id="quantityS' + el.id + '" min="1" pattern="^[0-9]+"  name="quantityS[]" onkeyup="totalizarService(' + el.id + ')"; value="1"></td>\n\
+    <td align="center"><input style="border:none;text-align:center" readonly="readonly" type="text" id="priceService' + el.id + '" name="priceService[]" value="' + el.price + '"></td>\n\
     <td align="center"><input readonly="readonly"  style="border:none;text-align:center" type="text" id="totalService' + el.id + '" name="total[]" step="0.01" value="' + el.price+ '"></td>\n\
-    <td align="center"><a id="btn-borrar' + el.id + '" class="btn btn-danger btn-sm" onclick="deleteRow(' + el.id + ')" ><i class="fa fa-trash" ></i></a></td>\n\
+    <td align="center"><a id="btn-borrar' + el.id + '" class="btn btn-danger btn-sm" onclick="deleteService(' + el.id + ')" ><i class="fa fa-trash" ></i></a></td>\n\
     </tr>';
           
 
@@ -253,26 +253,29 @@ function totalizarRow(id) {
 function totalizarService(id) {
 
    
-    var cantidadServicio = $('#quantityService' + id).val();
+    var cantidadServicio = $('#quantityS' + id).val();
+
+
 
     if ( cantidadServicio != '') {
 
       
         var precioServicio = $('#priceService' + id).val();
 
+
      
         var totalServicios = precioServicio * cantidadServicio;
-
+  
               
             $('#totalService' + id).val(totalServicios);
         
             totalService =0;
-            var fila = $("#tbl-service > tbody > tr").each(function(index, element) {
-            var id = element.id.replace("fila", "#totalService"); /*Debe ser este*/
+            var fila1 = $("#tbl-service > tbody > tr").each(function(index, element) {
+            var id = element.id.replace("fila1", "#totalService"); /*Debe ser este*/
             totalService += parseInt($(id).val());
            
         });
-                     $('#totalService').val(totalService);
+                     $('#totalS').val(totalService);
                      totalSale();
 
     } else {
@@ -285,21 +288,21 @@ function totalizarService(id) {
 function totalSale() {
 
      
-        if($('#totalService').val() == null || $('#totalService').val()== 0){
+        if($('#totalS').val() == null || $('#totalS').val()== 0){
 
            totalp= $('#totalProduct').val();
 
              $('#totalSale').val(totalp);
         }else if($('#totalProduct').val() == null || $('#totalProduct').val()== 0){
 
-          totals= $('#totalService').val();
+          totals= $('#totalS').val();
 
              $('#totalSale').val(totals);
 
         }else{
 
         totalSale = 0;  
-        totalS = $('#totalService').val();
+        totalS = $('#totalS').val();
         totalP =$('#totalProduct').val();
         totalSale = parseInt(totalS) +parseInt(totalP);
 
@@ -314,8 +317,6 @@ function totalSale() {
 
         
 }
-
-
 
 function deleteRow(id, e) {
 
@@ -336,10 +337,14 @@ function deleteRow(id, e) {
         $('#totalSale').val(result);
 
         listcode.pop();
+        if ($('#sale').val()===0) {
 
+              $('#totalProduct').val(0);
+
+        }
 
         if (isNaN(result)) {
-            $('#totalSale').val($('#totalService').val());
+            $('#totalSale').val($('#totalS').val());
 
         } else {
             $('#totalProduct').val(e);
@@ -366,6 +371,76 @@ function deleteRow(id, e) {
         }
     }
 }
+
+
+function deleteService(id, e) {
+
+
+    if ($('#fila1' + id).remove()) {
+        file = $('#quantityService').val() - 1;
+      
+        $('#quantityService').val(file)
+        $('#codeService').val('');
+        var totalService = 0;
+        var fila = $("#tbl-service > tbody > tr").each(function(index, element) {
+            var idfila = element.id.replace("fila", "#totalService"); /*Debe ser este*/
+            totalService = parseInt($(idfila).val());
+
+        });
+
+        result =0;
+        result = parseInt($('#totalSale').val()) - parseInt($('#totalService'));
+
+
+        $('#totalSale').val(result);
+
+        listcode1.pop();
+        if ($('#quantityService').val()==0) {
+
+              $('#totalS').val(0);
+
+        } if (isNaN(result)) {
+            $('#totalSale').val($('#totalProduct').val());
+
+        } else {
+            $('#totalService').val(e);
+
+        }
+          swal({
+              title: "Error en el momento de agregar!",
+              text: "Se ha eliminado correctamente', '!El servicio.",
+              icon: "success",
+              button: "Cerrar!",
+                  });
+ 
+
+
+        $('#totalService').val(totalService);
+
+        for (i = 0; i < listcode1.length; i++) {
+            if (listcode1[i] == id) {
+
+                listcode1.splice(i);
+                return false;
+
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(".accordion-titulo").click(function(){
     
