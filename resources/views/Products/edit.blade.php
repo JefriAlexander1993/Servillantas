@@ -8,9 +8,7 @@
             <a href="{{ route('Products.index')}}" class="btn btn-default pull-right" title="Listado de todos los productos."><i class="fa fa-list-ol"></i></a>   
         </h2>
 
-
-
-           {!! Form::model($product, ['route' => ['Products.update', $product->id], 'method' => 'PUT']) !!}
+           {!! Form::model($product1, ['route' => ['Products.update', $product1->id], 'method' => 'PUT']) !!}
 
            @include('Products.fragment.form')
 

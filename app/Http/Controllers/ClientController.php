@@ -2,35 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
-use App\Role;
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
-    
-     public function __construct()
+
+    public function __construct()
     {
         $this->middleware('auth');
     }
 
-
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-         $users = DB::table('role_user')
-                ->join('roles', 'role_user.role_id', '=', 'roles.id')
-                ->join('users', 'role_user.user_id', '=', 'users.id')
-                ->select('users.*')->where('roles.name_rol','ROL_CLIENTE') 
-                ->orderBy('name', 'desc')->paginate('8');       
-   
-        return view('Clients.index',compact('users'));
+        $users = DB::table('role_user')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->join('users', 'role_user.user_id', '=', 'users.id')
+            ->select('users.*')->where('roles.name', 'ROL_CLIENTE')
+            ->orderBy('id', 'desc')->paginate('8');
+
+        return view('Clients.index', compact('users'));
     }
 
     /**
@@ -46,7 +44,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return view('Clients.show',['client'=> User::findOrFail($id)]);
+        return view('Clients.show', ['client' => User::findOrFail($id)]);
 
     }
 
@@ -56,15 +54,15 @@ class ClientController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
-    {   
+    public function edit($id)
+    {
         $client = User::find(Auth::id());
-       // $user = User::all()->first();
+        // $user = User::all()->first();
 
-          //   $client = DB::table('users')->select()
-            //    ->where('users.id',  Auth::id())->get();  
-           
-        return view('Clients.edit' , compact('client'));
+        //   $client = DB::table('users')->select()
+        //    ->where('users.id',  Auth::id())->get();
+
+        return view('Clients.edit', compact('client'));
     }
 
     /**
@@ -74,11 +72,11 @@ class ClientController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
         $user = User::find($id)->update($request->all());
-         return redirect()->route('Clients.show', Auth::id())
-                ->with('info','La cita fue actualizada exitosamente.');
+        return redirect()->route('Clients.show', Auth::id())
+            ->with('info', 'La cita fue actualizada exitosamente.');
     }
 
     /**
@@ -87,5 +85,5 @@ class ClientController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
- 
+
 }

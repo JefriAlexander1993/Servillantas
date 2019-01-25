@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
-use DB;
-
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function __construct(){
-      
+    public function __construct()
+    {
+
         $this->middleware('auth');
     }
 
-
     public function index()
     {
-           $users = DB::table('role_user')
-                ->join('roles', 'role_user.role_id', '=', 'roles.id')
-                ->join('users', 'role_user.user_id', '=', 'users.id')
-                ->select('users.*', 'roles.name')
-                ->orderBy('id', 'desc')     
-                ->paginate('8'); 
-    
+        /* $users = DB::table('role_user')
+        ->join('roles', 'role_user.role_id', '=', 'roles.id')
+        ->join('users', 'role_user.user_id', '=', 'users.id')
+        ->select('users.*', 'roles.name')
+        ->orderBy('id', 'desc')
+        ->paginate('8');*/
+        $users = User::orderBy('id', 'desc')->paginate('8');
+
         return view('Admin.Users.index', compact('users'));
     }
 
@@ -44,28 +43,27 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function register(Request $request){
-       
-            $user = new User;
-            $user->name = $request->name;
-            $user->email= $request->email;
-            $user->password = bcrypt($request->password);
-            $user->save();
+    public function register(Request $request)
+    {
 
-                return redirect()->route('Users.index')
-                     ->with('info','El usuario  fue registrado exitosamente.');
+        $user            = new User;
+        $user->name_user = $request->name;
+        $user->email     = $request->email;
+        $user->password  = bcrypt($request->password);
+
+        $user->save();
+
+        return redirect()->route('Users.index')
+            ->with('info', 'El usuario  fue registrado exitosamente.');
 
     }
 
-
-
     public function store(Request $request)
     {
-        $user =User::create($request->all())->save();
+        $user = User::create($request->all())->save();
 
-
-            return redirect()->route('Users.index')
-                ->with('info','El usuario  fue ha guardado exitosamente.');
+        return redirect()->route('Users.index')
+            ->with('info', 'El usuario  fue ha guardado exitosamente.');
     }
 
     /**
@@ -77,7 +75,7 @@ class UserController extends Controller
     public function show($id)
     {
 
-        return view('Admin.Users.show',['user' => User::findOrFail($id)]);
+        return view('Admin.Users.show', ['user' => User::findOrFail($id)]);
     }
 
     /**
@@ -88,7 +86,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-            return view('Admin.Users.edit',['user' => User::findOrFail($id)]);
+        return view('Admin.Users.edit', ['user' => User::findOrFail($id)]);
     }
 
     /**
@@ -100,15 +98,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-          $user = User::find($id);
-          $user->name = $request->name;
-          $user->email= $request->email;
-          $user->password = bcrypt($request->password);
-          $user->save();
+        $user           = User::find($id);
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
 
-
-            return redirect()->route('Users.index')
-                ->with('info','El usuario actualizado exitosamente su datos.');
+        return redirect()->route('Users.index')
+            ->with('info', 'El usuario actualizado exitosamente su datos.');
 
     }
 
@@ -120,8 +117,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-            $appointment =  Appointment::find($id)->delete();      
+        $appointment = Appointment::find($id)->delete();
 
-        return back()->with('danger','El usuario fue eliminada exitosamente.');
+        return back()->with('danger', 'El usuario fue eliminada exitosamente.');
     }
 }
