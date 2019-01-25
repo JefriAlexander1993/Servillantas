@@ -1,20 +1,5 @@
-function Cantidad(string) { //Solo numeros positivos
-    var out = '';
-    var filtro = '1234567890'; //Caracteres validos
-    //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos 
-    for (var i = 0; i < string.length; i++)
-        if (filtro.indexOf(string.charAt(i)) != -1)
-            //Se añaden a la salida los caracteres validos
-            out += string.charAt(i);
-    //Retornar valor filtrado
-    return out;
-}
-
-function validarSiNumero(numero) {
-    if (!/^([0-9])*$/.test(numero)) alert("El valor " + numero + " no es un número");
-}
 $('#btn-addProduct').on('click', function() {
-    ($('#codeProduct').val() == '') {
+    if ($('#codeProduct').val() == '') {
         swal({
             title: "Error en el momento de agregar!",
             text: "Vuelve a intentarlo, recuerda llenar el campo de codigo, no puede estar vacio, vuelve a ingresarlo.",

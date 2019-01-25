@@ -8,7 +8,7 @@
     <div class="col-sm-6">
         <div class="form-group ">
             {!! Form::label('email','Email(*).')!!}
-        {!!Form::email('email',null,['class'=>'form-control','title'=>'Correo electronico.','id'=>'name','required'=>'required'])!!}
+        {!!Form::email('email',null,['class'=>'form-control','title'=>'Correo electronico.','id'=>'email','required'=>'required'])!!}
         </div>
     </div>
 </div>
