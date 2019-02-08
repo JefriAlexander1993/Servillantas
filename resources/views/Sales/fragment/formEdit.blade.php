@@ -1,7 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
-<table class="table table-hover ">
+<table class="display" id="sale" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -57,4 +54,3 @@
         </tr>
     </tbody>
 </table>
-@endsection

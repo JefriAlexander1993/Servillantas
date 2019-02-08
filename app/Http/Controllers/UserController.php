@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -120,5 +123,22 @@ class UserController extends Controller
         $appointment = Appointment::find($id)->delete();
 
         return back()->with('danger', 'El usuario fue eliminada exitosamente.');
+    }
+
+//----------------------------Metodo de exportación--------------------------------------//
+
+    public function exportUsersExcel()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+    public function exportUsersPdf()
+    {
+
+        $users = User::all();
+
+        $pdf = PDF::loadView('Reports.users', compact('users'));
+
+        return $pdf->download('users.pdf');
     }
 }

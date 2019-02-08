@@ -21,6 +21,7 @@ class SaleController extends Controller
     {
 
         return view('Sales.index', ['sales0' => Sale::orderBy('id', 'desc')->paginate('8'), 'totalSales' => DB::table('sales')->select('totalsale')->sum('totalsale')]);
+
     }
 
     /**
@@ -57,7 +58,7 @@ class SaleController extends Controller
                 $sale_product = new Sales_products;
 
                 $sale_product->quantity = $request->quantity[$x];
-                $sale_product->price    = $request->price[$x];
+                $sale_product->price_u  = $request->price[$x];
                 $sale_product->total    = $request->totalProduct[$x];
                 $sale_product->sale_id  = $sale->id;
 
@@ -71,7 +72,7 @@ class SaleController extends Controller
 
                 $sale_service           = new Sales_products;
                 $sale_service->quantity = $request->quantityS[$x];
-                $sale_service->price    = $request->priceService[$x];
+                $sale_service->price_u  = $request->priceService[$x];
                 $sale_service->total    = $request->totalService[$x];
                 $sale_service->sale_id  = $sale->id;
 
@@ -121,23 +122,27 @@ class SaleController extends Controller
     public function edit($id)
     {
         $sale = Sale::findOrFail($id);
+        // $detalles = DB::table('sales_products')->
+        //     join('products', 'products.id', '=', 'sales_products.product_id')
+        //     ->join('sales', 'sales.id', '=', 'sales_products.sale_id')
+        //     ->select('sales.id', 'products.code', 'products.name', 'products.price', 'sales_products.quantity', 'sales_products.price_u', 'sales_products.total', 'sales.totalsale')->where('sales_products.sale_id', '=', $sale->id)->get()->toJson();
 
-        $detalles = DB::table('sales_products')
-            ->join('products', 'products.id', '=', 'sales_products.product_id')
-            ->select('products.*')->where('sales_products.sale_id', '=', $sale->id)->get();
-
-        return view('Sales.edit', compact('detalles'));
+        return view('Sales.edit', compact('sale'));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function indexSale()
+    {
+
+    }
+
+/**
+ * Update the specified resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @param  \App\Sale  $sale
+ * @return \Illuminate\Http\Response
+ */public function update(Request $request, $id)
     {
         //
     }

@@ -22,6 +22,8 @@
                                             <link href="{{asset('img/favicon.ico')}}" rel="shortcut icon">
                                             </link>
                                         </link>
+                                        <link href="{{asset('css/jquery.dataTables.min.css')}}" rel="stylesheet">
+                                        </link>
                                     </link>
                                 </link>
                             </link>
@@ -476,9 +478,9 @@
         <!-- /.content-wrapper -->
         <!--Fin-Contenido-->
         <!-- jQuery 2.1.4 -->
-        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css" rel="stylesheet"/>
-        <script src="{{asset('js/jquery.min.js')}}">
+        <script src="{{asset('js/jquery-3.3.1.js')}}">
         </script>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css" rel="stylesheet"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js">
         </script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js">
@@ -496,6 +498,21 @@
         </script>
         <script src="{{asset('js/validation.js')}}" type="text/javascript">
         </script>
+        {{--
+        
+        --}}
+        <script src="{{asset('js/jquery.dataTables.min.js')}}">
+        </script>
         <!-- Bootstrap 3.3.5 -->
     </body>
+    {{--
+    <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+        <script src="bootstrap-editable/js/bootstrap-editable.js">
+        </script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+            <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js">
+            </script>
+        </link>
+    </link>
+    --}}
 </html>

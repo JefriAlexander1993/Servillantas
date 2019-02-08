@@ -287,3 +287,12 @@ $(".accordion-titulo").click(function() {
         $(this).removeClass("open");
     }
 });
+var data_edit = function(tbody, table) {
+    $(tbody).on("click", "#idSale", function() {
+        var data = table.row($(this).parents("tr")).data();
+        var iduser = $("#idsalEdit").val(data.id);
+    });
+}
+$(document).ready(function() {
+    data_edit();
+});
