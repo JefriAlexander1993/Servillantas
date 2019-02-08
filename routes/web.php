@@ -56,6 +56,10 @@ Route::get('Product/getProduct/{code}', 'ProductController@getProductByCode')->n
 Route::get('Service/getService/{code}', 'ServiceController@getServiceByCode')->name('Service.getcode');
 
 //Exportar
+// Rutas---> Le doy un nombre, una url, luego le digo que cuando ingrese a esa url, vaya al controlador
+// en este caso UserController e ingrese al metodo exportUsersPdf
+// Luego de esto ir al Admin/Users/aside.blade.php, donde se crearan lo botones que generaran los pdf o los exceles
+
 Route::get("/usersPdf", "UserController@exportUsersPdf");
 
 Route::get("/usersExcel", "UserController@exportUsersExcel");

@@ -126,11 +126,26 @@ class UserController extends Controller
     }
 
 //----------------------------Metodo de exportación--------------------------------------//
+    //Explicación:
+    // Debes ingresar este comando en la consola
+    //php artisan make:export UsersExport --model=User
+    // UsersExport--->Nombre depende que vaya a exportar e igual manera el modelo.
+    //Eso te genera un archivo que esta en la siguiente posición app/Exports/
+    // El hace la consulta en eloquent si usted quiere que salga otra cosa, pues hace la consulta, en este caso trae todo
+    //lo de un modelo, luego de ello hace el metodo que esta en la parte inferior llamado exportUsersExcel, pero recuerde traer la clase que creo con el comando de la siguiente manera ej:use App\Exports\UsersExport; y de igual manera use Maatwebsite\Excel\Facades\Excel;
+
+    //IMPORTANTE.----> Establecer las rutas. Ir al archivo web.php y crearla.
 
     public function exportUsersExcel()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
+
+    //Explicación:
+    // Se crea el metodo que esta en la parte inferior llamado exportUsersPdf, eso lo que hace en la primera linea
+    // Es traer todo los usuarios. La segubda linea envia la variable $users la cual trae todos los usuarios a una vista
+    // Que debes crear, es como un index, en este caso esta resources/view/Reports/users
+    // En la tercera linea descarga el pdf con el nombre establecido en este caso users.pdf
 
     public function exportUsersPdf()
     {
@@ -141,4 +156,5 @@ class UserController extends Controller
 
         return $pdf->download('users.pdf');
     }
+
 }
