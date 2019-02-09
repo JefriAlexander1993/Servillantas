@@ -102,12 +102,12 @@ class SaleController extends Controller
 
         $detalles = DB::table('sales_products')
             ->join('products', 'products.id', '=', 'sales_products.product_id')
-            ->select('sales_products.*', 'products.name', 'products.body')->where('sales_products.sale_id', '=', $id)
+            ->select('sales_products.*', 'products.name', 'products.body', 'products.price')->where('sales_products.sale_id', '=', $id)
             ->orderBy('created_at', 'desc')->paginate('2');
 
         $detallesServicios = DB::table('sales_products')
             ->join('services', 'services.id', '=', 'sales_products.service_id')
-            ->select('sales_products.*', 'services.name', 'services.body')->where('sales_products.sale_id', '=', $id)
+            ->select('sales_products.*', 'services.name', 'services.body', 'services.price')->where('sales_products.sale_id', '=', $id)
             ->orderBy('created_at', 'desc')->paginate('2');
 
         return view('Sales.show', compact('detalles', 'detallesServicios'));
@@ -119,22 +119,6 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $sale = Sale::findOrFail($id);
-        // $detalles = DB::table('sales_products')->
-        //     join('products', 'products.id', '=', 'sales_products.product_id')
-        //     ->join('sales', 'sales.id', '=', 'sales_products.sale_id')
-        //     ->select('sales.id', 'products.code', 'products.name', 'products.price', 'sales_products.quantity', 'sales_products.price_u', 'sales_products.total', 'sales.totalsale')->where('sales_products.sale_id', '=', $sale->id)->get()->toJson();
-
-        return view('Sales.edit', compact('sale'));
-
-    }
-
-    public function indexSale()
-    {
-
-    }
 
 /**
  * Update the specified resource in storage.
@@ -142,17 +126,14 @@ class SaleController extends Controller
  * @param  \Illuminate\Http\Request  $request
  * @param  \App\Sale  $sale
  * @return \Illuminate\Http\Response
- */public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
+
+/**
+ * Remove the specified resource from storage.
+ *
+ * @param  \App\Sale  $sale
+ * @return \Illuminate\Http\Response
+ */
     public function destroy($id)
     {
         $sale = Sale::find($id)->delete();

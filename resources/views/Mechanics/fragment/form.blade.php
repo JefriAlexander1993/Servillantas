@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group ">
-            {!! Form::label('name','Nombre(*).')!!}
-            {!!Form::text('name',null,['class'=>'form-control','Nombre del usuario','title'=>'Nombre.','id'=>'name','required'=>'required'])!!}
+            {!! Form::label('id','Nombre(*).')!!}
+            {!!Form::text('id',null,['class'=>'form-control','Nombre del usuario','title'=>'Nombre.','id'=>'name','required'=>'required'])!!}
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             {!!Form::label('lastname','Apellidos(*).')!!}
-		{!!Form::text('lastname',null,['class'=>'form-control','title'=>'Apellidos.','id'=>'lastname'])!!}
+        {!!Form::text('lastname',null,['class'=>'form-control','title'=>'Apellidos.','id'=>'lastname'])!!}
         </div>
     </div>
 </div>
@@ -16,13 +16,13 @@
     <div class="col-sm-6">
         <div class="form-group ">
             {!! Form::label('email','Email(*).')!!}
-		{!!Form::email('email',null,['class'=>'form-control','Nombre del usuario','title'=>'Correo electronico.','id'=>'name','required'=>'required'])!!}
+        {!!Form::email('email',null,['class'=>'form-control','Nombre del usuario','title'=>'Correo electronico.','id'=>'name','required'=>'required'])!!}
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group ">
             {!!Form::label('phone','Teléfono(*).')!!}
-		{!!Form::text('phone',null,['class'=>'form-control','title'=>'Teléfono.','id'=>'phone'])!!}
+        {!!Form::text('phone',null,['class'=>'form-control','title'=>'Teléfono.','id'=>'phone'])!!}
         </div>
     </div>
 </div>
@@ -30,13 +30,13 @@
     <div class="col-sm-6">
         <div class="form-group ">
             {!! Form::label('address','Dirección.')!!}
-		{!!Form::text('address',null,['class'=>'form-control','title'=>'Dirección.','id'=>'address','required'=>'required'])!!}
+        {!!Form::text('address',null,['class'=>'form-control','title'=>'Dirección.','id'=>'address','required'=>'required'])!!}
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group ">
             {!!Form::label('date_birth','Fecha de cumpleaños(*).')!!}
-		{!!Form::date('date_birth',null,['class'=>'form-control','title'=>'Fecha de cumpleaños.','id'=>'date_birth'])!!}
+        {!!Form::date('date_birth',null,['class'=>'form-control','title'=>'Fecha de cumpleaños.','id'=>'date_birth'])!!}
         </div>
     </div>
 </div>

@@ -27,11 +27,16 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        if (Product::codeUnique($request->code)) {
+            $product = Product::create($request->all())->save();
 
-        $product = Product::create($request->all())->save();
+            return redirect()->route('Products.index')
+                ->with('info', 'El producto fue ha guardado exitosamente.');
+        } else {
+            return back()->with('danger', 'El codigo' . $request->code . 'ya esta asociado a un producto.');
 
-        return redirect()->route('Products.index')
-            ->with('info', 'El producto fue ha guardado exitosamente.');
+        }
+
     }
 
     public function update(Request $request, $id)

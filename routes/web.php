@@ -30,7 +30,7 @@ Route::resource('Clients', 'ClientController');
 
 Route::resource('Permissions', 'PermissionController');
 
-Route::resource('Sales', 'SaleController');
+Route::resource('Sales', 'SaleController', ['except' => ['edit', 'update']]);
 
 Route::resource('Vehicles', 'VehicleController');
 
