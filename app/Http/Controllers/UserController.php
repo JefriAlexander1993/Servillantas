@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\UsersExport;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
+use DB;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -18,13 +19,14 @@ class UserController extends Controller
 
     public function index()
     {
-        /* $users = DB::table('role_user')
-        ->join('roles', 'role_user.role_id', '=', 'roles.id')
-        ->join('users', 'role_user.user_id', '=', 'users.id')
-        ->select('users.*', 'roles.name')
-        ->orderBy('id', 'desc')
-        ->paginate('8');*/
-        $users = User::orderBy('id', 'desc')->paginate('8');
+        $users = DB::table('role_user')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->join('users', 'role_user.user_id', '=', 'users.id')
+            ->select('users.*', 'roles.name')
+            ->orderBy('id', 'desc')
+            ->paginate('8');
+
+        // $users = User::orderBy('id', 'desc')->paginate('8');
 
         return view('Admin.Users.index', compact('users'));
     }

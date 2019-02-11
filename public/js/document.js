@@ -1,3 +1,51 @@
+$(document).ready(function() {
+    setTimeout(function() {
+        // Declaramos la capa mediante una clase para ocultarlo
+        $("#error").fadeOut(1500);
+    }, 1800);
+    setTimeout(function() {
+        // Declaramos la capa mediante una clase para ocultarlo
+        $("#delete").fadeOut(1500);
+    }, 1800);
+    setTimeout(function() {
+        // Declaramos la capa mediante una clase para ocultarlo
+        $("#success").fadeOut(1500);
+    }, 1800);
+});
+//--------------------------------------------ELIMINAR--------------------------------------------------//
+$('#btn-deleteSale').on('click', function() {
+    swal({
+        title: "¿Estás seguro?",
+        text: " Una vez eliminado, no podrá recuperar esta vente",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            var id = $("#idSale").val();
+            var routeA = "Sales/" + id;
+            var token = $("#token").val();
+            $.ajax({
+                url: routeA,
+                headers: {
+                    'X-CSRF-TOKEN': token
+                },
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    _method: 'DELETE'
+                },
+            });
+            swal("¡Su venta ha sido eliminado!", {
+                icon: "success",
+            });
+            location.reload();
+        } else {
+            swal("Tu venta no podido eliminar!");
+        }
+    });
+});
+//----------------------------------------------------------------------------------------------------//
 $('#btn-addProduct').on('click', function() {
     if ($('#codeProduct').val() == '') {
         swal({

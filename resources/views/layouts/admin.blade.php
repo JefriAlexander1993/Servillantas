@@ -458,6 +458,7 @@
             </div>
             <!-- /.col -->
             <!-- /.row -->
+            <br/>
             <footer align="bottom" class="main-footer">
                 <div class="pull-right hidden-xs">
                     <b>

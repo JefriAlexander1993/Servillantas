@@ -1,6 +1,7 @@
 @extends('layouts.admin')
     @section('content')
 <div class="row">
+    <input id="token" type="hidden" value="{{ csrf_token() }}"/>
     <div class="col-sm-10">
         <div class="form-group">
             <a class="btn btn-success" href="{{route('Sales.create')}}">
@@ -42,7 +43,7 @@
                 <th class="text-center">
                     Total
                 </th>
-                <th class="text-center" colspan="2">
+                <th class="text-center" colspan="3">
                     Acción
                 </th>
             </tr>
@@ -66,19 +67,14 @@
                     </a>
                 </td>
                 <td align="center">
-                    <form action="{{route('Sales.destroy', $sale1->id)}}" method="POST">
-                        {{csrf_field()}}
-                        <!--Toque para que sea eliminado por la aplicacion-->
-                        <input name="_method" type="hidden" value="DELETE">
-                            <button class="btn btn-xs btn-danger">
-                                <i aria-hidden="true" class="fa fa-trash-o">
-                                </i>
-                            </button>
-                        </input>
-                    </form>
+                    <input id="idSale" style="width:20px" type="hidden" value="{{$sale1->id}}"/>
+                    <button class="btn btn-xs btn-danger" id="btn-deleteSale">
+                        <i aria-hidden="true" class="fa fa-trash-o">
+                        </i>
+                    </button>
                 </td>
+                @endforeach
             </tr>
-            @endforeach
         </tbody>
     </table>
 </div>

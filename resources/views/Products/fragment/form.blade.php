@@ -4,7 +4,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('name', 'Nombre del producto (*)')!!}
-    {!! Form::text('name',null,['class'=> 'form-control', 'required'=>'required', 'pattern'=>"[A-Za-z]"]) !!}
+    {!! Form::text('name',null,['class'=> 'form-control', 'required'=>'required']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('price', 'Precio del producto (*)')!!}

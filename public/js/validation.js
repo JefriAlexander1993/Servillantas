@@ -1,78 +1,62 @@
-// $('#name').on('keypress', function(e) {
-//     if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]*$/.test(e.target.value)) {
-//         e.preventDefault();
-//         swal({
-//             title: 'Error',
-//             text: 'No se permiten numeros, ni caracteres en este campo.!',
-//             icon: "warning",
-//             button: "Cerrar!",
-//         });
-//     }
-// });
-// $('#lastname').on('keypress', function(e) {
-//     if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]*$/.test(e.target.value)) {
-//         e.preventDefault();
-//         swal({
-//             title: 'Error',
-//             text: 'No se permiten numero, ni caracteres en este campo.!',
-//             icon: "warning",
-//             button: "Cerrar!",
-//         });
-//     }
-// });
-// $('#display_name').on('keypress', function(e) {
-//     if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]*$/.test(e.target.value)) {
-//         e.preventDefault();
-//         swal({
-//             title: 'Error',
-//             text: 'No se permiten numero, ni caracteres en este campo.!',
-//             icon: "warning",
-//             button: "Cerrar!",
-//         });
-//     }
-// });
-//Solo texto y espacios
-$("#name").bind('keypress', function(event) {
-    var regex = new RegExp("^[a-zA-Z ]+$");
-    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-    if (!regex.test(key)) {
-        event.preventDefault();
-        return false;
-    }
+$("#name").keypress(function(key) {
+    window.console.log(key.charCode)
+    if ((key.charCode < 97 || key.charCode > 122) //letras mayusculas
+        && (key.charCode < 65 || key.charCode > 90) //letras minusculas
+        && (key.charCode != 45) //retroceso
+        && (key.charCode != 241) //ñ
+        && (key.charCode != 209) //Ñ
+        && (key.charCode != 32) //espacio
+        && (key.charCode != 225) //á
+        && (key.charCode != 233) //é
+        && (key.charCode != 237) //í
+        && (key.charCode != 243) //ó
+        && (key.charCode != 250) //ú
+        && (key.charCode != 193) //Á
+        && (key.charCode != 201) //É
+        && (key.charCode != 205) //Í
+        && (key.charCode != 211) //Ó
+        && (key.charCode != 218) //Ú
+    ) return false;
 });
-$("#lastname").bind('keypress', function(event) {
-    var regex = new RegExp("^[a-zA-Z ]+$");
-    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-    if (!regex.test(key)) {
-        event.preventDefault();
-        return false;
-    }
+$("#lastname").keypress(function(key) {
+    window.console.log(key.charCode)
+    if ((key.charCode < 97 || key.charCode > 122) //letras mayusculas
+        && (key.charCode < 65 || key.charCode > 90) //letras minusculas
+        && (key.charCode != 45) //retroceso
+        && (key.charCode != 241) //ñ
+        && (key.charCode != 209) //Ñ
+        && (key.charCode != 32) //espacio
+        && (key.charCode != 225) //á
+        && (key.charCode != 233) //é
+        && (key.charCode != 237) //í
+        && (key.charCode != 243) //ó
+        && (key.charCode != 250) //ú
+        && (key.charCode != 193) //Á
+        && (key.charCode != 201) //É
+        && (key.charCode != 205) //Í
+        && (key.charCode != 211) //Ó
+        && (key.charCode != 218) //Ú
+    ) return false;
 });
-$("#display_name").bind('keypress', function(event) {
-    var regex = new RegExp("^[a-zA-Z ]+$");
-    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-    if (!regex.test(key)) {
-        event.preventDefault();
-        return false;
-    }
-});
-//Solo números
-$("input.dni").bind('keypress', function(event) {
-    var regex = new RegExp("^[0-9]+$");
-    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-    if (!regex.test(key)) {
-        event.preventDefault();
-        return false;
-    }
-});
-//Alphanumérico y espacios
-$("input.buscar").bind('keypress', function(event) {
-    var regex = new RegExp("^[a-zA-Z0-9 ]+$");
-    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-    if (!regex.test(key)) {
-        event.preventDefault();
-        return false;
-    }
+$("#display_name").keypress(function(key) {
+    window.console.log(key.charCode)
+    if ((key.charCode < 97 || key.charCode > 122) //letras mayusculas
+        && (key.charCode < 65 || key.charCode > 90) //letras minusculas
+        && (key.charCode != 45) //retroceso
+        && (key.charCode != 241) //ñ
+        && (key.charCode != 209) //Ñ
+        && (key.charCode != 32) //espacio
+        && (key.charCode != 225) //á
+        && (key.charCode != 233) //é
+        && (key.charCode != 237) //í
+        && (key.charCode != 243) //ó
+        && (key.charCode != 250) //ú
+        && (key.charCode != 193) //Á
+        && (key.charCode != 201) //É
+        && (key.charCode != 205) //Í
+        && (key.charCode != 211) //Ó
+        && (key.charCode != 218) //Ú
+    ) return false;
 });
 //-----------------------------Valida que los campos solo permitan numeros-----------------------------//
 $('#nuip').on('keypress', function(e) {
