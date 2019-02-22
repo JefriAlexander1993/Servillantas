@@ -21,8 +21,23 @@ class Appointment extends Model
   //   protected $dateFormat = 'U';
 
 
-      public function user()
+    public function user()
     {
         return $this->belongsToMany('App\User');
     }
-}
+
+    public function scopeLincense($query,$license)
+    {
+      if($license)
+
+        return $query->where('license_plate','LIKE',"%$license%");
+      
+    }
+    
+    public function scopeTitle($query,$title)
+    {
+        if($title)
+         return $query->where('title','LIKE',"%$title%");
+    }
+  }
+

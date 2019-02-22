@@ -19,9 +19,12 @@ class AppointmentController extends Controller
      */
 
 
-    public function index(){
+    public function index(Request $request){
   
-        $appointments=  Appointment::orderBy('id','asc')->paginate('8');   
+        $license= $request->get('license');
+        $title= $request->get('title');
+      
+        $appointments=  Appointment::orderBy('id','asc')->lincense($license)->title($title)->paginate('8');   
                 return view('Appointments.index', compact('appointments')); 
 
 

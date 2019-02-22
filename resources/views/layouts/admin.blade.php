@@ -24,6 +24,8 @@
                                         </link>
                                         <link href="{{asset('css/jquery.dataTables.min.css')}}" rel="stylesheet">
                                         </link>
+                                         <link href="{{asset('css/select2.min.css')}}" rel="stylesheet">
+                                        </link>
                                     </link>
                                 </link>
                             </link>
@@ -440,7 +442,7 @@
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" id="app">
                                             <!--Contenido-->
                                             @yield('content')
                                             <!--Fin Contenido-->
@@ -504,16 +506,28 @@
         --}}
         <script src="{{asset('js/jquery.dataTables.min.js')}}">
         </script>
-        <!-- Bootstrap 3.3.5 -->
-    </body>
-    {{--
-    <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
-        <script src="bootstrap-editable/js/bootstrap-editable.js">
+             <script src="{{asset('js/select2.min.js')}}">
         </script>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-            <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js">
-            </script>
-        </link>
-    </link>
-    --}}
+        <script type="text/javascript">
+    
+            $("#codeProduct").select2({
+                placeholder:'Elige un producto.',
+                allowClear:true,
+                });
+              $("#codeService").select2({
+                placeholder:'Elige un servicio.',
+                allowClear:true,
+                });
+        </script>
+    </body>
 </html>
+{{--
+<link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="bootstrap-editable/js/bootstrap-editable.js">
+    </script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js">
+        </script>
+    </link>
+</link>
+--}}

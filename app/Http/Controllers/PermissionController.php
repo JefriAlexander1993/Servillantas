@@ -18,9 +18,11 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Admin.Permissions.index', ['permissions'=>Permission::orderBy('id','desc')->paginate('8')]);
+        $namep= $request->get('namep');
+        $descriptionp= $request->get('descriptionp');
+        return view('Admin.Permissions.index', ['permissions'=>Permission::orderBy('id','desc')->name($namep)->description($descriptionp)->paginate('8')]);
     }
 
     /**

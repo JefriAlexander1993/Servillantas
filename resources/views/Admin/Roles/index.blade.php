@@ -2,13 +2,37 @@
 
 @section('content')
 <div class="col-sm-10">
-    <h2>
+    <h1>
         Listado de roles.
         <a class="btn btn-success pull-right" href="{{ route('Roles.create')}}" title="Agregar producto">
             <i class="fa fa-plus-square">
             </i>
         </a>
-    </h2>
+    </h1>
+    <h3 class="pull-right">
+        Busqueda:  
+        
+            {{Form::open(['route'=>'Roles.index', 'method'=>'GET', 'class'=>'form-inline pull-right'])}}
+        <div class="form-group">
+            {{Form::text('name', null,['class'=>'form-control','placeholder'=>'Nombre'])}}
+        </div>
+        <div class="form-group">
+            {{Form::text('description', null,['class'=>'form-control','placeholder'=>'Descripción'])}}
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" id="search" title="Busqueda" type="submit">
+                <i class="fa fa-search">
+                </i>
+            </button>
+        </div>
+        <div class="form-group " id="cancel">
+            <a class="btn btn-danger" href="{{url('/Roles')}}" title="Cancelar busqueda">
+                <i class="fa fa-ban">
+                </i>
+            </a>
+        </div>
+        {{Form::close()}}
+    </h3>
     <table class="table table-hover" style="margin-top:8px">
         <tr>
             <th>

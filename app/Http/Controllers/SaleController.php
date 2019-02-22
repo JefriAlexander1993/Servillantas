@@ -31,7 +31,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return view('Sales.create');
+         $products = Product::pluck('name','code'); 
+         $services = Service::pluck('name','code'); 
+        return view('Sales.create',compact('products','services'));
     }
 
     /**

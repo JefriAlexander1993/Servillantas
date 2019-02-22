@@ -14,21 +14,12 @@
 //     return $request->user();
 // });
 
-// Route::get('Sales/{sale}/edit/detalle', function () {
-//     $sale    = App\Sale::findOrFail($id);
-//     $detalle = App\Sales_products::
-//         join('products', 'products.id', '=', 'sales_products.product_id')
-//         ->join('sales', 'sales.id', '=', 'sales_products.sale_id')
-//         ->select('products.code', 'products.name', 'products.price', 'sales_products.quantity', 'sales_products.price_u', 'sales_products.total', 'sales.totalsale')->where('sales_products.sale_id', '=', $sale->id)->get()->toJson();
 
-//     return $detalle;
-
-// });
-// Route::get('Sales/detalle', function () {
-
-//     return datatables()->query(DB::table('sales_products')->
-//             join('products', 'products.id', '=', 'sales_products.product_id')
-//             ->join('sales', 'sales.id', '=', 'sales_products.sale_id')
-//             ->select('sales.id', 'products.code', 'products.name', 'products.price', 'sales_products.quantity', 'sales_products.price_u', 'sales_products.total', 'sales.totalsale')->where('sales_products.sale_id', '=', '1'))->toJson();
-
-// });
+Route::get('api/Users', function () {
+     
+            return App\Role_user::join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->join('users', 'role_user.user_id', '=', 'users.id')
+            ->select('users.*', 'roles.name')
+            ->orderBy('id', 'desc')
+            ->get();
+});

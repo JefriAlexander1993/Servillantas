@@ -17,9 +17,11 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request)
     {
-        return view('Admin.Roles.index', ['roles'=>Role::orderBy('id','desc')->paginate('8')]);
+        $name= $request->get('name');
+        $description= $request->get('description');
+        return view('Admin.Roles.index', ['roles'=>Role::orderBy('id','desc')->name($name)->description($description)->paginate('8')]);
     }
 
     /**

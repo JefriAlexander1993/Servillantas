@@ -2,13 +2,31 @@
 
 @section('content')
 <div class="col-sm-10">
-    <h2>
+    <h1>
         Listado de usuarios.
         <a class="btn btn-xs btn-success pull-right" href="{{ route('Users.create')}}" title="Agregar producto">
             <i class="fa fa-plus-square">
             </i>
         </a>
-    </h2>
+    </h1>
+    <h3 class="pull-right">
+        Busqueda: 
+        
+            {{Form::open(['route'=>'Users.index', 'method'=>'GET', 'class'=>'form-inline pull-right'])}}
+        <div class="form-group">
+            {{Form::text('name_user', null,['class'=>'form-control','placeholder'=>'Nombre'])}}
+        </div>
+        <div class="form-group">
+            {{Form::text('email', null,['class'=>'form-control','placeholder'=>'Email'])}}
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" type="submit">
+                <i class="fa fa-search">
+                </i>
+            </button>
+        </div>
+        {{Form::close()}}
+    </h3>
     <table class="table table-hover" style="margin-top:8px">
         <tr>
             <th class="text-center">

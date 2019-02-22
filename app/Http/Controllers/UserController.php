@@ -13,18 +13,25 @@ class UserController extends Controller
 {
     public function __construct()
     {
-
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+
+        $name= $request->get('name_user');
+        $email= $request->get('email');
+
         $users = DB::table('role_user')
             ->join('roles', 'role_user.role_id', '=', 'roles.id')
             ->join('users', 'role_user.user_id', '=', 'users.id')
             ->select('users.*', 'roles.name')
-            ->orderBy('id', 'desc')
-            ->paginate('8');
+            ->orderBy('id', 'desc')      ->paginate('8');
+            // ->name($name)
+            // ->email($email)
+      
+           
+          
 
         // $users = User::orderBy('id', 'desc')->paginate('8');
 
