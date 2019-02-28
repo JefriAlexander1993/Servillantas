@@ -41,6 +41,10 @@ Route::post('Users/register', 'UserController@register')->name('Users.register')
 
 Route::get('Appointments/assignation/{id}', 'AppointmentController@assignation');
 Route::put('Appointments/assignationUpdate/{id}', 'AppointmentController@assignationUpdate')->name('Appointments.assignationUpdate');
+Route::put('Appointments/updateAttended/{id}', 'AppointmentController@updateAttended')->name('Appointments.updateAttended');
+
+
+
 Route::get('Mechanics/assignationShow/{id}', 'MechanicController@assignedShow');
 Route::resource('Roles', 'RoleController');
 

@@ -10,6 +10,7 @@ use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use DateTime;
 use DB;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 class AppointmentController extends Controller
 {
     /**
@@ -17,7 +18,10 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+ public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index(Request $request){
   
@@ -51,11 +55,7 @@ class AppointmentController extends Controller
         $appointment =   Appointment::where('id','=',$id)->first();
         $appointment->user_id = $request->user_id;
         $appointment->state ='Asignada';
-
-
-            $appointment->save(); 
-
-    
+        $appointment->save(); 
             return redirect()->route('Appointments.index')
                 ->with('info','La cita se ha asignado  exitosamente.');
 
@@ -67,41 +67,10 @@ class AppointmentController extends Controller
 
     public function calendary()
     {
+          
+      $appointments = Appointment::where('attended',null)->get();
 
-      $event =[];
-      $appointments = Appointment::all();
-
-       if($appointments->count()) {
-        foreach ($appointments as $row) {
-       //    $date_create = $row->date_end."24:00:00";
-           
-            $event[] =\Calendar::event(
-                $row->title. ' - ' . $row->license_plate.' - '.date('d m Y', strtotime($row->date_end)).' - '.date('H:i', strtotime($row->date_end)).' ',
-                false,
-                new \DateTime($row->created_at),
-                new \DateTime($row->date_end),
-                   
-                $row->id,
-                
-                [
-                    'color'=> $row->color,
-                ]
-            );
-
-        }
-      
-    }
-      $calendar = \Calendar::addEvents($event)->setOptions([
-                'schedulerLicenseKey '=> 'GPL-My-Project-Is-Open-Source',
-                'FirstDay' => 1,
-                'contentheight' => 650,
-                'editable' => false,
-                'allDay' => false,
-                'aspectRatio' => 2,
-                'slotLabelFormat' =>'d-m-Y h:i:s',
-                              
-                ])->setCallbacks([]);; 
-        return view('Appointments.calendary',compact('appointments', 'calendar')); 
+      return view('Appointments.calendary', compact('appointments'));
 }
 
     /**
@@ -122,9 +91,11 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-       
-               $appointment =  Appointment::create($request->all())->save();
-
+       $validatedData = $request->validate([
+                'hour_end' => 'required|unique:appointments',
+            ]);
+         $appointment = Appointment::create($request->all());
+    
             return redirect()->route('Appointments.index')
                 ->with('info','La cita se fue ha guardado exitosamente.');
     }
@@ -160,11 +131,28 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $appointment = Appointment::find($id)->update($request->all());   
+        $appointment = Appointment::find($id)->update($request->all());
 
             return redirect()->route('Appointments.index')
                 ->with('info','La cita fue actualizada exitosamente.');
 
+    }
+    public function updateAttended(Request $request, $id)
+    {
+        $idU = Auth::id();
+        $user = User::findOrFail($idU);
+        $appointment = Appointment::find($id);
+        if ($user->nuip ===$request->nuipM) {
+              $appointment->attended= $request->attended;
+              $appointment->save();
+               return back()->with('info','La cita fue cumplida exitosamente.');
+                 
+                
+        }
+               return back()
+                ->with('danger','Su nuip no fue correcto, vulve a intentarlo.');
+      
+         
     }
 
     /**

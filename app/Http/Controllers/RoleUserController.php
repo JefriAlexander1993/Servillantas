@@ -14,6 +14,10 @@ class RoleUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return view('Admin.Role_users.index', ['role_users1' => Role_user::orderBy('id', 'desc')->paginate('8')]);

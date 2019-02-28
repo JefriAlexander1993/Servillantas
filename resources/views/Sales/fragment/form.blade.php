@@ -34,15 +34,15 @@
                     <input id="url_product" type="hidden" value="{{url('Product/getProduct/')}}">
                       <div class="row"> 
                   
-                        <div class="col-sm-10"> 
+                        <div class="col-sm-11"> 
                          
                                 <div class="form-group row has-success">
                                 {!! Form::label('code','Buscar(*).')!!}<br/>
-                                {!!Form::select('code',$products, null,['class'=>'form-control','title'=>'Ingresa un codigo de un articulo existente', 'required'=>'required','name'=>'codeProduct', 'id'=>'codeProduct', 'placeholder'=>'Elige un producto','style'=>'width:800px'])!!}
+                                {!!Form::select('code',$products, null,['class'=>'form-control','title'=>'Ingresa un codigo de un articulo existente', 'required'=>'required','name'=>'codeProduct', 'id'=>'codeProduct', 'placeholder'=>'Elige un producto','style'=>'width:900px'])!!}
                                 </div>
                         </div>
                    
-                    <div class="col-sm-2"> 
+                    <div class="col-sm-1"> 
                         <div class="form-group">
                         <br/>
                             {!!Form::button('
@@ -97,13 +97,13 @@
         </a>
         <div class="accordion-content">
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-sm-11">
                        <div class="form-group row has-success">
                                 {!! Form::label('code','Buscar(*).')!!}<br/>
-                                {!!Form::select('code',$services, null,['class'=>'form-control','title'=>'Ingresa un codigo de un servicio existente', 'required'=>'required','name'=>'codeService', 'id'=>'codeService', 'placeholder'=>'Elige un servicio','style'=>'width:800px'])!!}
+                                {!!Form::select('code',$services, null,['class'=>'form-control','title'=>'Ingresa un codigo de un servicio existente', 'required'=>'required','name'=>'codeService', 'id'=>'codeService', 'placeholder'=>'Elige un servicio','style'=>'width:900px'])!!}
                                 </div>
                     </div>   
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                            <div class="form-group">
                             <br/>
                                 {!!Form::button('

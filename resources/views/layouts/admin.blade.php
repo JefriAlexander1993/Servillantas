@@ -349,7 +349,7 @@
                             @endif
                         </li>
                         <li class="treeview">
-                            @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_MECANICO')=== true)
+                       {{--      @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_MECANICO')=== true) --}}
                             <a href="#">
                                 <i class="fa fa-users">
                                 </i>
@@ -382,7 +382,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            @else
+                        {{--     @else
                             <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-th">
@@ -392,7 +392,7 @@
                                     </span>
                                 </a>
                             </li>
-                            @endif
+                            @endif --}}
                         </li>
                         <li>
                             <a href="#">

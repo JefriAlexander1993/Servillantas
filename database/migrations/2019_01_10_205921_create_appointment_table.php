@@ -19,10 +19,11 @@ class CreateAppointmentTable extends Migration
                 $table->increments('id');
                 $table->string('license_plate');
                 $table->string('title');
-                $table->string('color');          
-                $table->dateTime('date_end');
-                $table->string('state')->default('No asignada');
-
+                $table->mediumText('description'); 
+                $table->date('date', date("%d-%m-%Y"));         
+                $table->timeTz('hour_end')->format('H:i:s');
+                $table->string('state')->nullable();
+                $table->string('attended')->default('No');
                 $table->integer('user_id')->unsigned()->nullable();
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->timestamps();   

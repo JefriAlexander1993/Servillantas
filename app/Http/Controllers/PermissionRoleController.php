@@ -14,6 +14,10 @@ class PermissionRoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return view('Admin.Permission_roles.index' ,['permission_roles1' => Permission_role::orderBy('created_at','desc')->paginate('8')]);

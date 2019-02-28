@@ -61,6 +61,9 @@
                                 <th class="text-center">
                                     Estado
                                 </th>
+                                <th class="text-center">
+                                    Atendida
+                                </th>
                                 <th class="text-center" colspan="4">
                                     Acción
                                 </th>
@@ -84,13 +87,16 @@
                                     {{$appointment->title}}
                                 </td>
                                 <td align="center">
-                                    {{ date('d M Y', strtotime($appointment->date_end))}}
+                                    {{ date('d M Y', strtotime($appointment->date))}}
                                 </td>
                                 <td align="center">
-                                    {{ date('H:i', strtotime($appointment->date_end))}}
+                                    {{ date('H:i', strtotime($appointment->hour_end))}}
                                 </td>
                                 <td align="center">
                                     {{$appointment->state}}
+                                </td>
+                                <td align="center">
+                                    {{$appointment->attended}}
                                 </td>
                                 <td>
                                     <a class="btn bg-olive btn-flat btn-xs" href="{{url('Appointments/assignation', $appointment->id)}}" id="asignar" title="Asignar cita." type="button">

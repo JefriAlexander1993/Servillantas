@@ -3,32 +3,48 @@
   
 @section('content')
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+<h2 class="text-center">
+    <strong>
+        Citas
+    </strong>
+    	<a href="{{ route('Appointments.index')}}" class="btn btn-default pull-right" title="Ver lista de citas"><i class="fa fa-list-ol"></i></a> 
 
-    
-<div class="container" >
+							<a href="{{ route('Appointments.create')}}" class="btn btn-success pull-right" title="Agregar cita"><i class="fa fa-plus-square"></i></a>	
+</h2>
+<div class="col-lg-12">
+    <div class="row">
+        @foreach($appointments as $appointment )
+            <div class="col-sm-3">
+             <div class="box">
+                                <div class="box-header with-border">
+                                    <h2 class="box-title">
+                                        <b>
+                                           {{$appointment->title}}
+                                        </b>
+                                    </h2>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
 
-		<div class="row">
-			<div class="col-md-11">
-				<div class="panel panel-default" align="center">
-					<div class="panel-heading" style="background: #2e6da4; color:white">
-						<h4><strong>Cita</strong>
-							<a href="{{ route('Appointments.index')}}" class="btn btn-default pull-right" title="Ver lista de citas"><i class="fa fa-list-ol"></i></a> 
+                                        <p class="card-text">
+				                             <b>Placa: {{$appointment->license_plate}}</b>
+				                        </p>
+                                          <p class="card-text">
+                                          <b>Fecha:</b> {{ date('d M Y', strtotime($appointment->date))}}
+                                        </p> 
+                                        <p class="card-text">
+				                            <b>Hora:</b> {{ date('H:i', strtotime($appointment->hour_end))}}
+				                        </p>
 
-							<a href="{{ route('Appointments.create')}}" class="btn btn-success pull-right" title="Agregar cita"><i class="fa fa-plus-square"></i></a>			
-						</h4>
-					</div>
-					<div class="panel-body" >
-						{!!$calendar->calendar()!!}
-						{!!$calendar->script()!!}
-					</div>	
-				</div>
-			</div>
-		</div>
+                                </div>
+                            </div>
+             </div>    
 
+   
+     
+      
+        @endforeach
+    </div>
 </div>
- 
+
 @endsection

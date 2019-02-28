@@ -7,10 +7,10 @@
             {{ $appointment->title}}
         </p><b>Fecha de cita:</b>
 
-            {!!  date('d M Y', strtotime($appointment->date_end)) !!}
+            {!!  date('d M Y', strtotime($appointment->date)) !!}
          </p>
          <p><b>Hora de cita:</b>
-         	  {!!  date('H:i', strtotime($appointment->date_end)) !!}
+         	  {!!  date('H:i', strtotime($appointment->hour_end)) !!}
    		  </p>
    		   <div class="form-group">
              {!!Form::label('user_id ','Mecanico(*).')!!}

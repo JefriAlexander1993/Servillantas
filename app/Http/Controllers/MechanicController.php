@@ -15,12 +15,16 @@ class MechanicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
            $mechanics1 = DB::table('role_user')
                 ->join('roles', 'role_user.role_id', '=', 'roles.id')
                 ->join('users', 'role_user.user_id', '=', 'users.id')
-                ->select('users.*')->where('roles.name','ROL_MECANICO') 
+                ->select('users.*')->where('roles.name','ROL_ADMINISTRADOR') 
                 ->orderBy('id', 'desc')     
                 ->paginate('8');    
 
@@ -28,10 +32,13 @@ class MechanicController extends Controller
         return view('Mechanics.index',compact('mechanics1'));
     }
 
-    public function assignedShow($id){
+    public function assignedShow(Request $request,$id){
+         // $appointment = Appointment::findOrFail($id);
+         // $appointment->attended =$request->attended;
+         // $appointment->save();
 
          $appointment1= DB::table('users')
-                ->join('appointments', 'appointments.user_id','=','users.id')->where('appointments.user_id','=', $id)->select('appointments.*','users.name_user')->orderBy('id', 'asc')     
+                ->join('appointments', 'appointments.user_id','=','users.id')->select('appointments.*','users.name_user')->where('attended','No')->orderBy('id', 'asc')     
                 ->paginate('3');      
 
         
