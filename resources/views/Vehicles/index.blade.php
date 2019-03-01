@@ -6,7 +6,9 @@
     	<h2>
 
     		Listado de vehiculos.
-    		<a href="{{ route('Vehicles.create')}}" class="btn btn-success pull-right" title="Agregar producto"><i class="fa fa-plus-square"></i></a>
+    
+            <a href="{{ route('Vehicles.create')}}" class="btn btn-success pull-right" title="Agregar producto"><i class="fa fa-plus-square"></i></a>
+      
     	</h2>
 
     	<table class="table table-hover table-striped">

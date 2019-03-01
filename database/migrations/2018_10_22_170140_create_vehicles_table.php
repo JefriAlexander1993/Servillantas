@@ -21,8 +21,7 @@ class CreateVehiclesTable extends Migration
             $table->string('brand');
             $table->string('mileage');
 
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+   
             $table->timestamps();
         });
     }

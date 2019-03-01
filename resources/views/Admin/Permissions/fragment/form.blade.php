@@ -1,6 +1,6 @@
 <div class="form-group">
-    {!! Form::label('name','Nombre')!!}
-	{!! Form::text('name',null,['class'=> 'form-control','required'=>'required']) !!}
+    {!! Form::label('namep','Nombre')!!}
+	{!! Form::text('namep',null,['class'=> 'form-control','required'=>'required']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('display_name', 'Nombre a mostrar')!!}

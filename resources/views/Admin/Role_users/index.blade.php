@@ -10,15 +10,15 @@
     	</h2>
 			<table class="table table-hover" style="margin-top:8px">
 			    <tr>
-			        <th>Id del usuario</th>
-			        <th>Id del rol</th>
+			        <th>Nombre del usuario</th>
+			        <th>Nombre del rol</th>
 			        <th colspan="3" class="text-center">Acción&nbsp;</th>
 
 			    </tr>
 			    @foreach($role_users1 as $role_user)
 			        <tr>
-			            <td>{{ $role_user->user_id }}</th>
-			         	<td>{{ $role_user->role_id }}</th>
+			            <td>{{ $role_user->name_user }}</th>
+			         	<td>{{ $role_user->name}}</th>
 		
 			            <td>
                 			<a href="{{ route('Role_users.show', $role_user->id)}}" class="btn btn-secundary  btn-xs" title="Ver asigancion de rol a un usuario"><i class="fa fa-eye"></i></a>

@@ -68,7 +68,9 @@ class AppointmentController extends Controller
     public function calendary()
     {
           
-      $appointments = Appointment::where('attended',null)->get();
+      $appointments= Appointment::where('attended','No')->get();
+      $appointments->sortBy('date');
+      $appointments->sortBy('hour_end');
 
       return view('Appointments.calendary', compact('appointments'));
 }

@@ -1,10 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-    
+    @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true) 
     <div class="col-sm-12">
         <a href="{{ route('Mechanics.index')}}" class="btn btn-default pull-right" title="Listado de todos los productos."><i class="fa fa-list-ol"></i></a>
-    </div>    
+    </div>   
+    @endif 
          @foreach($appointment1 as $appointment)
     	<h2>
       <b> Placa: {{ $appointment->license_plate}}</b>   

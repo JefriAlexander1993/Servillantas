@@ -4,7 +4,7 @@
     
     <div class="col-sm-10">
     	<h2>
-           <b> Nombre: {{ $permission->name }}</b>
+           <b> Nombre: {{ $permission->namep }}</b>
       
                        <a href="{{ route('Permissions.edit', $permission->id)}}" class="btn btn-primary pull-right" title="Editar producto"> <i class="fa fa-edit"></i></a>           
         </h2>

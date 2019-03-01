@@ -6,7 +6,7 @@ use App\Role;
 use App\Role_user;
 use App\User;
 use Illuminate\Http\Request;
-
+use DB;
 class RoleUserController extends Controller
 {
     /**
@@ -20,7 +20,13 @@ class RoleUserController extends Controller
     }
     public function index()
     {
-        return view('Admin.Role_users.index', ['role_users1' => Role_user::orderBy('id', 'desc')->paginate('8')]);
+            $role_users1 = DB::table('role_user')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->join('users', 'role_user.user_id', '=', 'users.id')
+            ->select('roles.name','roles.id','users.name_user')->orderBy('id', 'desc')->paginate('8');
+
+       
+        return view('Admin.Role_users.index',compact('role_users1'));
     }
 
     /**
@@ -54,8 +60,12 @@ class RoleUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        return view('Admin.Role_users.show', ['role_user' => Role_user::findOrFail($id)]);
+    {   
+        $role_user =Role_user::findOrFail($id);
+        $user = User::findOrFail($role_user->user_id);
+        $role = Role::findOrFail($role_user->role_id);
+
+        return view('Admin.Role_users.show',compact('role_user','user','role'));
     }
 
     /**
@@ -66,7 +76,7 @@ class RoleUserController extends Controller
      */
     public function edit($id)
     {
-        return view('Admin.Role_users.edit', ['role_user' => Role_user::findOrFail($id), 'userid' => User::pluck('name', 'id'), 'roleid' => Role::pluck('name', 'id')]);
+        return view('Admin.Role_users.edit', ['role_user' => Role_user::findOrFail($id), 'userid' => User::pluck('name_user', 'id'), 'roleid' => Role::pluck('name', 'id')]);
     }
 
     /**

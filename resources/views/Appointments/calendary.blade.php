@@ -7,9 +7,11 @@
     <strong>
         Citas
     </strong>
+     @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
     	<a href="{{ route('Appointments.index')}}" class="btn btn-default pull-right" title="Ver lista de citas"><i class="fa fa-list-ol"></i></a> 
 
 							<a href="{{ route('Appointments.create')}}" class="btn btn-success pull-right" title="Agregar cita"><i class="fa fa-plus-square"></i></a>	
+                            @endif
 </h2>
 <div class="col-lg-12">
     <div class="row">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Permission_role;
 use App\Permission;
 use App\Role;
+use DB;
 
 class PermissionRoleController extends Controller
 {
@@ -20,7 +21,14 @@ class PermissionRoleController extends Controller
     }
     public function index()
     {
-        return view('Admin.Permission_roles.index' ,['permission_roles1' => Permission_role::orderBy('created_at','desc')->paginate('8')]);
+        $permission_roles1 = DB::table('permission_role')
+            ->join('roles', 'permission_role.role_id', '=', 'roles.id')
+            ->join('permissions', 'permission_role.permission_id', '=', 'permissions.id')
+            ->select('roles.name','permissions.id','permissions.namep')
+            ->orderBy('id', 'desc')->paginate('8');
+            // dd($permission_role);
+
+        return view('Admin.Permission_roles.index',compact('permission_roles1'));
     }
 
     /**
@@ -30,7 +38,7 @@ class PermissionRoleController extends Controller
      */
     public function create()
     {
-         return view('Admin.Permission_roles.create',['roleid' => Role::pluck('name','id'),'permissionid' => Permission::pluck('name','id')]);
+         return view('Admin.Permission_roles.create',['roleid' => Role::pluck('name','id'),'permissionid' => Permission::pluck('namep','id')]);
     }
 
     /**
@@ -55,7 +63,10 @@ class PermissionRoleController extends Controller
      */
     public function show($id)
     {
-          return view('Admin.Permission_roles.show',['permission_role' => Permission_role::findOrFail($id)]);
+        $permission_role =Permission_role::findOrFail($id);
+        $permission = Permission::findOrFail($permission_role->permission_id);
+        $role = Role::findOrFail($permission_role->role_id);
+          return view('Admin.Permission_roles.show',compact('permission_role','permission','role'));
     }
 
     /**
@@ -66,7 +77,7 @@ class PermissionRoleController extends Controller
      */
     public function edit($id)
     {
-          return view('Admin.Permission_roles.edit',['permission_role' => Permission_role::findOrFail($id),'roleid' => Role::pluck('name','id'),'permissionid' => Permission::pluck('name','id')]);
+          return view('Admin.Permission_roles.edit',['permission_role' => Permission_role::findOrFail($id),'roleid' => Role::pluck('name','id'),'permissionid' => Permission::pluck('namep','id')]);
     }
 
     /**

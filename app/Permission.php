@@ -11,7 +11,7 @@ class Permission extends EntrustPermission
     protected $table = 'permissions';
 
     protected $fillable = [
-        'id','name','display_name','description','created_at'
+        'id','namep','display_name','description','created_at'
     ];
 
 

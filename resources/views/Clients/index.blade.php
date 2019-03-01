@@ -9,7 +9,7 @@
     <table class="table table-hover" style="margin-top:8px">
         <tr>
             <th class="text-center">
-                NUip
+                Nuip
             </th>
             <th class="text-center">
                 Nombres
@@ -36,7 +36,7 @@
                 {{ $user->nuip }}
             </td>
             <td class="text-center">
-                {{ $user->name }}
+                {{ $user->name_user }}
             </td>
             <td class="text-center">
                 {{ $user->lastname }}

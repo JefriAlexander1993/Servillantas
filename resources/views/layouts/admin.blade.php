@@ -169,16 +169,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            @else
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-dashboard">
-                                    </i>
-                                    <span style="color:#fff">
-                                        No estas autorizado.
-                                    </span>
-                                </a>
-                            </li>
+                      
                             @endif
                         </li>
                         <li class="treeview">
@@ -190,7 +181,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                @if(((Auth::user()->hasRole('ROL_CLIENTE')=== true) || (Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)))
+                                @if((Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)))
                                 <li class="treeview">
                                     <a href="{{route('Appointments.index')}}">
                                         <i class="fa fa-circle-o">
@@ -236,16 +227,6 @@
                                 </li>
                             </ul>
                         </li>
-                        @else
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-th">
-                                </i>
-                                <span style="color:#fff">
-                                    No estas autorizado.
-                                </span>
-                            </a>
-                        </li>
                         @endif
                         <li class="treeview">
                             @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
@@ -256,16 +237,7 @@
                                     Productos
                                 </span>
                             </a>
-                            @else
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-th">
-                                    </i>
-                                    <span style="color:#fff">
-                                        No estas autorizado.
-                                    </span>
-                                </a>
-                            </li>
+                  
                             @endif
                         </li>
                         <li class="treeview">
@@ -277,16 +249,7 @@
                                     Servicios
                                 </span>
                             </a>
-                            @else
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-th">
-                                    </i>
-                                    <span style="color:#fff">
-                                        No estas autorizado.
-                                    </span>
-                                </a>
-                            </li>
+                        
                             @endif
                         </li>
                         <li class="treeview">
@@ -299,12 +262,20 @@
                                 <i class="fa fa-angle-left pull-right">
                                 </i>
                             </a>
-                            <ul class="treeview-menu" id="MainMenu" style="display: none;">
+                            <ul class="treeview-menu" id="MainMenu" style="display: none;">      @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
                                 <li>
                                     <a href="{{route('Vehicles.index')}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Lista de vehiculos
+                                    </a>
+                                </li>
+                                @endif
+                                   <li>
+                                    <a href="{{route('Vehicles.create')}}">
+                                        <i class="fa fa-circle-o">
+                                        </i>
+                                        Crear vehiculos
                                     </a>
                                 </li>
                             </ul>
@@ -320,7 +291,7 @@
                                 <i class="fa fa-angle-left pull-right">
                                 </i>
                             </a>
-                            <ul class="treeview-menu" id="MainMenu" style="display: none;">
+                            <ul class="treeview-menu" id="MainMenu" style="display: none;">@if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
                                 <li>
                                     <a href="{{route('Clients.index')}}">
                                         <i class="fa fa-circle-o">
@@ -328,6 +299,7 @@
                                         Lista de clientes
                                     </a>
                                 </li>
+                                @endif
                                 <li>
                                     <a href="{{route('Clients.show', Auth::id() )}}">
                                         <i class="fa fa-circle-o">
@@ -336,20 +308,12 @@
                                     </a>
                                 </li>
                             </ul>
-                            @else
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-th">
-                                    </i>
-                                    <span style="color:#fff">
-                                        No estas autorizado.
-                                    </span>
-                                </a>
-                            </li>
+                       
                             @endif
                         </li>
                         <li class="treeview">
-                       {{--      @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_MECANICO')=== true) --}}
+                             @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_MECANICO')=== true) 
+                            
                             <a href="#">
                                 <i class="fa fa-users">
                                 </i>
@@ -359,7 +323,8 @@
                                 <i class="fa fa-angle-left pull-right">
                                 </i>
                             </a>
-                            <ul class="treeview-menu" id="MainMenu" style="display: none;">
+                            @endif
+                            <ul class="treeview-menu" id="MainMenu" style="display: none;"> @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
                                 <li>
                                     <a href="{{route('Mechanics.index')}}">
                                         <i class="fa fa-circle-o">
@@ -367,6 +332,7 @@
                                         Lista de mecanicos
                                     </a>
                                 </li>
+                              @endif  
                                 <li>
                                     <a href="{{route('Mechanics.show', Auth::id() )}}">
                                         <i class="fa fa-circle-o">
@@ -516,6 +482,10 @@
                 });
               $("#codeService").select2({
                 placeholder:'Elige un servicio.',
+                allowClear:true,
+                });
+               $("#idVehicle").select2({
+                placeholder:'Elige tu vehiculo.',
                 allowClear:true,
                 });
         </script>

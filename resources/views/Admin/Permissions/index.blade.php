@@ -4,7 +4,7 @@
 <div class="col-sm-10">
     <h2>
         Listado de permisos.
-        <a class="btn btn-success pull-right" href="{{ route('Permissions.create')}}" title="Agregar producto">
+        <a class="btn btn-success pull-right" href="{{ route('Permissions.create')}}" title="Agregar permiso">
             <i class="fa fa-plus-square">
             </i>
         </a>
@@ -51,7 +51,7 @@
         @foreach($permissions as $permission)
         <tr>
             <td>
-                {{ $permission->name }}
+                {{ $permission->namep }}
             </td>
             <td>
                 {{ $permission->display_name }}
@@ -60,13 +60,13 @@
                 {{ $permission->description}}
             </td>
             <td>
-                <a class="btn btn-secundary btn-xs" href="{{ route('Permissions.show', $permission->id)}}" title="Ver producto">
+                <a class="btn btn-secundary btn-xs" href="{{ route('Permissions.show', $permission->id)}}" title="Ver permiso">
                     <i class="fa fa-eye">
                     </i>
                 </a>
             </td>
             <td>
-                <a class="btn btn btn-primary btn-xs" href="{{ route('Permissions.edit', $permission->id)}}" title="Editar producto">
+                <a class="btn btn btn-primary btn-xs" href="{{ route('Permissions.edit', $permission->id)}}" title="Editar permiso">
                     <i class="fa fa-edit">
                     </i>
                 </a>

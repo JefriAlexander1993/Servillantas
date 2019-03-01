@@ -21,12 +21,12 @@ class UserController extends Controller
 
         $name= $request->get('name_user');
         $email= $request->get('email');
-
-        $users = DB::table('role_user')
-            ->join('roles', 'role_user.role_id', '=', 'roles.id')
-            ->join('users', 'role_user.user_id', '=', 'users.id')
-            ->select('users.*', 'roles.name')
-            ->orderBy('id', 'desc')      ->paginate('8');
+        $users = User::orderBy('id','desc')->paginate();
+        // $users = DB::table('role_user')
+        //     ->join('roles', 'role_user.role_id', '=', 'roles.id')
+        //     ->join('users', 'role_user.user_id', '=', 'users.id')
+        //     ->select('users.*', 'roles.name')
+        //     ->orderBy('id', 'desc')->paginate('8');
             // ->name($name)
             // ->email($email)
       
@@ -59,7 +59,7 @@ class UserController extends Controller
     {
 
         $user            = new User;
-        $user->name_user = $request->name;
+        $user->name_user = $request->name_user;
         $user->email     = $request->email;
         $user->password  = bcrypt($request->password);
 
@@ -111,7 +111,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user           = User::find($id);
-        $user->name     = $request->name;
+        $user->name_user     = $request->name_user;
         $user->email    = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use DB;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,9 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return view('Clients.show', ['client' => User::findOrFail($id)]);
+        $client = User::findOrFail($id);    
+        $vehicle= Vehicle::findOrFail($client->vehicle_id);
+        return view('Clients.show', compact('client','vehicle'));
 
     }
 
@@ -57,12 +60,10 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = User::find(Auth::id());
-        // $user = User::all()->first();
 
-        //   $client = DB::table('users')->select()
-        //    ->where('users.id',  Auth::id())->get();
-
-        return view('Clients.edit', compact('client'));
+         $vehicles = Vehicle::pluck('brand','id'); 
+        
+        return view('Clients.edit', compact('client','vehicles'));
     }
 
     /**
@@ -74,7 +75,9 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id)->update($request->all());
+        $client = User::find($id);
+        $client->vehicle_id =$request->vehicle_id;
+        $client->update($request->all());
         return redirect()->route('Clients.show', Auth::id())
             ->with('info', 'La cita fue actualizada exitosamente.');
     }

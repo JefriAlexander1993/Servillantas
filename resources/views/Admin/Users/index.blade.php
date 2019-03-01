@@ -4,7 +4,7 @@
 <div class="col-sm-10">
     <h1>
         Listado de usuarios.
-        <a class="btn btn-xs btn-success pull-right" href="{{ route('Users.create')}}" title="Agregar producto">
+        <a class="btn btn-xs btn-success pull-right" href="{{ route('Users.create')}}" title="Agregar usuarios">
             <i class="fa fa-plus-square">
             </i>
         </a>
@@ -38,9 +38,9 @@
             <th class="text-center">
                 Email
             </th>
-            <th class="text-center">
+         {{--    <th class="text-center">
                 Rol
-            </th>
+            </th> --}}
             <th class="text-center">
                 Fecha de creación
             </th>
@@ -59,9 +59,9 @@
             <td class="text-center">
                 {{ $user->email }}
             </td>
-            <td class="text-center">
+     {{--        <td class="text-center">
                 {{ $user->name }}
-            </td>
+            </td> --}}
             <td class="text-center">
                 {{ $user->created_at}}
             </td>

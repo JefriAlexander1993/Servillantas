@@ -8,10 +8,12 @@
             <i class="fa fa-eye">
             </i>
         </a>
+         @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
         <a class="btn btn-default pull-right" href="{{ route('Mechanics.index')}}" title="Listado de todos los productos.">
             <i class="fa fa-list-ol">
             </i>
         </a>
+        @endif
     </h2>
     {!! Form::model($mechanic, ['route' => ['Mechanics.update', Auth::id()], 'method' => 'PUT']) !!}
 

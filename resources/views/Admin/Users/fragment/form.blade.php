@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group ">
-            {!! Form::label('name','Nombre(*).')!!}
-        {!!Form::text('name',null,['class'=>'form-control','title'=>'Nombre del usuario','required'=>'required'])!!}
+            {!! Form::label('name_user','Nombre(*).')!!}
+        {!!Form::text('name_user',null,['class'=>'form-control','title'=>'Nombre del usuario','required'=>'required'])!!}
         </div>
     </div>
     <div class="col-sm-6">
@@ -16,7 +16,7 @@
     <div class="col-sm-6">
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             {!! Form::label('password','Contraseña(*).')!!}
-            <input class="form-control" id="password" minlength="6" name="password" required="" type="password">
+            <input class="form-control" id="password" minlength="6" name="password"  type="password" title="Ingrese la contraseña si desea cambiarla" placeholder="******">
                 @if ($errors->has('password'))
                 <span class="help-block">
                     <strong>
@@ -30,7 +30,7 @@
     <div class="col-sm-6">
         <div class="form-group">
             {!! Form::label('password-confirm','Confirmar contraseña(*).')!!}
-            <input class="form-control" id="password-confirm" minlength="6" name="password_confirmation" required="" type="password">
+            <input class="form-control" id="password-confirm" minlength="6" name="password_confirmation" title="Confirme la contraseña"  type="password" placeholder="******">
             </input>
         </div>
     </div>

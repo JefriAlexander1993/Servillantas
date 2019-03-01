@@ -4,7 +4,7 @@
     
     <div class="col-sm-10">
     	<h2>
-           <b> Nombres: {{ $client->name }}</b>
+           <b> Nombres: {{ $client->name_user }}</b>
       
                        <a href="{{ route('Clients.edit', Auth::id())}}" class="btn btn-primary pull-right" title="Actualizar cliente"> <i class="fa fa-edit"></i></a>           
         </h2>
@@ -25,10 +25,15 @@
          <p><b>Teléfono:</b>
             {{ $client->phone}}
          </p>
-            <p><b>email:</b>
+         <p><b>email:</b>
             {{ $client->email}}
          </p>
-      
+         <p><b>Vehiculo:</b>
+            {{ $vehicle->brand}}
+         </p>  
+         <p><b>Placa:</b>
+            {{ $vehicle->license_plate}}
+         </p>  
           
     </div>
     
