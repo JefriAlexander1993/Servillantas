@@ -47,7 +47,9 @@ class ClientController extends Controller
     {
         $client = User::findOrFail($id);    
 
-         return view('Clients.show', compact('client','vehicle'));
+        $vehicles =DB::table('vehicles')->where('user_id',$client->id)->get();
+               
+         return view('Clients.show', compact('client','vehicles'));
 
     }
 
@@ -74,7 +76,6 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         $client = User::find($id);
-        $client->vehicle_id =$request->vehicle_id;
         $client->update($request->all());
         return redirect()->route('Clients.show', Auth::id())
             ->with('info', 'La cita fue actualizada exitosamente.');

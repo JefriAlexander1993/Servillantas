@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Vehicle;
 use App\User;
+use DB;
 
 
 class VehicleController extends Controller
@@ -50,7 +51,7 @@ class VehicleController extends Controller
         $user = User::findOrFail(Auth::id());
          if($user->nuip===$request->nuip){
             $vehicle = Vehicle::create($request->all())->save();
-            return redirect()->route('Vehicles.index')
+            return redirect()->route('Appointments.create')
                 ->with('info','El vehiculo se ha guardado exitosamente.');
         }
             return back()
@@ -67,7 +68,7 @@ class VehicleController extends Controller
     public function show($id)
     {
          // $client=User::findOrFail(Auth::id());
-         
+      
          return view('Vehicles.show' ,[ 'vehicle' => Vehicle::findOrFail($id)]);
     }
 

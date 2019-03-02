@@ -189,6 +189,8 @@
                                         Lista de citas
                                     </a>
                                 </li>
+                                @endif
+                                @if((Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true||Auth::user()->hasRole('ROL_CLIENTE')=== true)))
                                 <li class="treeview">
                                     <a href="{{route('Appointments.create')}}">
                                         <i class="fa fa-circle-o">
@@ -196,7 +198,7 @@
                                         Agendar
                                     </a>
                                 </li>
-                                @endif
+                               @endif
                                 <li>
                                     <a href="{{url('Calendary')}}">
                                         <i class="fa fa-circle-o">
@@ -252,6 +254,7 @@
                         
                             @endif
                         </li>
+                        @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true ||Auth::user()->hasRole('ROL_CLIENTE')===true)  
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-car">
@@ -262,6 +265,7 @@
                                 <i class="fa fa-angle-left pull-right">
                                 </i>
                             </a>
+                          @endif  
                             <ul class="treeview-menu" id="MainMenu" style="display: none;">      @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
                                 <li>
                                     <a href="{{route('Vehicles.index')}}">
@@ -271,6 +275,7 @@
                                     </a>
                                 </li>
                                 @endif
+                            @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_CLIENTE')=== true)
                                    <li>
                                     <a href="{{route('Vehicles.create')}}">
                                         <i class="fa fa-circle-o">
@@ -278,6 +283,7 @@
                                         Crear vehiculos
                                     </a>
                                 </li>
+                            @endif    
                             </ul>
                         </li>
                         <li class="active treeview">
@@ -351,17 +357,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        {{--     @else
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-th">
-                                    </i>
-                                    <span style="color:#fff">
-                                        No estas autorizado.
-                                    </span>
-                                </a>
-                            </li>
-                            @endif --}}
+                 
                         </li>
                         <li>
                             <a href="#">
@@ -487,7 +483,7 @@
                 placeholder:'Elige un servicio.',
                 allowClear:true,
                 });
-               $("#idVehicle").select2({
+               $("#user_id").select2({
                 placeholder:'Elige el propietario.',
                 allowClear:true,
                 });

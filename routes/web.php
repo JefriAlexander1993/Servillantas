@@ -24,17 +24,20 @@ Route::resource('Products', 'ProductController')->middleware('auth','role:ROL_AD
 
 Route::resource('Services', 'ServiceController')->middleware('auth','role:ROL_ADMINISTRADOR');
 
- Route::resource('Clients', 'ClientController');
 
 //-------------------------------------Clientes----------------------------------------//
- Route::get('Clients','ClientController@index')->name('Clients.index')->middleware('role:ROL_ADMINISTRADOR');
-// Route::get('Clients/{id}','ClientController@show')->name('Clients.show')->middleware('auth','role:ROL_CLIENTE|ROL_ADMINISTRADOR');
-// Route::get('Clients/{id}/edit','ClientController@edit')->name('Clients.edit')->middleware('auth','role:ROL_CLIENTE|ROL_ADMINISTRADOR');
-// Route::put('Clients/{id}','ClientController@update')->name('Clients.update')->middleware('auth',['role:ROL_CLIENTE|ROL_ADMINISTRADOR']);
+
+ Route::resource('Clients', 'ClientController');
+ //Seguridad
+Route::get('Clients','ClientController@index')->name('Clients.index')->middleware('role:ROL_ADMINISTRADOR');
+Route::get('Clients/{id}','ClientController@show')->name('Clients.show')->middleware('auth','role:ROL_CLIENTE|ROL_ADMINISTRADOR');
+Route::get('Clients/{id}/edit','ClientController@edit')->name('Clients.edit')->middleware('auth','role:ROL_CLIENTE|ROL_ADMINISTRADOR');
+Route::put('Clients/{id}','ClientController@update')->name('Clients.update')->middleware('auth',['role:ROL_CLIENTE|ROL_ADMINISTRADOR']);
+//--------------------------------------------------------------------------------------//
 
 
 Route::resource('Mechanics', 'MechanicController');
-Route::resource('Users', 'UserController')->middleware('auth');
+
 
 
 Route::resource('Permissions', 'PermissionController')->middleware('role:ROL_ADMINISTRADOR');
@@ -42,17 +45,20 @@ Route::resource('Permissions', 'PermissionController')->middleware('role:ROL_ADM
 Route::resource('Sales', 'SaleController')->except(['edit', 'update']);
 
 Route::resource('Vehicles', 'VehicleController');
- // Route::get('Vehicles','VehicleController@index')->name('Vehicles.index')->middleware('role:ROL_ADMINISTRADOR');
-
+Route::get('Vehicles','VehicleController@index')->name('Vehicles.index')->middleware('role:ROL_ADMINISTRADOR');
+//------------------------------------Citas--------------------------------------------//
 Route::resource('Appointments', 'AppointmentController');
+Route::get('Appointments','AppointmentController@index')->name('Appointments.index')->middleware('auth','role:ROL_ADMINISTRADOR');
+Route::get('Appointments/assignation/{id}', 'AppointmentController@assignation')->middleware('auth','role:ROL_ADMINISTRADOR');
+Route::put('Appointments/assignationUpdate/{id}', 'AppointmentController@assignationUpdate')->name('Appointments.assignationUpdate')->middleware('auth','role:ROL_ADMINISTRADOR');
+Route::put('Appointments/updateAttended/{id}', 'AppointmentController@updateAttended')->name('Appointments.updateAttended')->middleware('auth','role:ROL_ADMINISTRADOR');
+//-------------------------------------------------------------------------------------//
+
+//-------------------------------------Usuarios-----------------------------------------//
+Route::resource('Users', 'UserController')->middleware('auth');
+Route::post('Users/register', 'UserController@register')->name('Users.register')->middleware('auth','role:ROL_ADMINISTRADOR');
 
 
-
-Route::post('Users/register', 'UserController@register')->name('Users.register')->middleware('auth');
-
-Route::get('Appointments/assignation/{id}', 'AppointmentController@assignation');
-Route::put('Appointments/assignationUpdate/{id}', 'AppointmentController@assignationUpdate')->name('Appointments.assignationUpdate')->middleware('auth');
-Route::put('Appointments/updateAttended/{id}', 'AppointmentController@updateAttended')->name('Appointments.updateAttended')->middleware('auth');
 
 
 

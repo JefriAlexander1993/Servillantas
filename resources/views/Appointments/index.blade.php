@@ -18,8 +18,7 @@
                     </h4>
                 </div>
                 <h3 class="pull-right">
-                    Busqueda:  
-        
+                    Busqueda:         
             {{Form::open(['route'=>'Appointments.index', 'method'=>'GET', 'class'=>'form-inline pull-right'])}}
                     <div class="form-group">
                         {{Form::text('license', null,['class'=>'form-control','placeholder'=>'Placa'])}}
