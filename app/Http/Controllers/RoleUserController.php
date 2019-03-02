@@ -14,10 +14,7 @@ class RoleUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
             $role_users1 = DB::table('role_user')

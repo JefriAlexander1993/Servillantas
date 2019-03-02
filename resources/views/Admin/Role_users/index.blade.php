@@ -5,7 +5,7 @@
     <div class="col-sm-10">
     	<h2>
 
-    		Listado de asiganciones de roles a usuario.
+    		Listado de asignaciones de roles a usuario.
     		<a href="{{ route('Role_users.create')}}" class="btn btn-success pull-right" title="Agregar producto"><i class="fa fa-plus-square"></i></a>
     	</h2>
 			<table class="table table-hover" style="margin-top:8px">

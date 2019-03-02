@@ -6,7 +6,10 @@
         <a href="{{ route('Mechanics.index')}}" class="btn btn-default pull-right" title="Listado de todos los productos."><i class="fa fa-list-ol"></i></a>
     </div>   
     @endif 
-         @foreach($appointment1 as $appointment)
+    <div class="col-lg-12">
+      <div class="row">
+        @foreach($appointment1 as $appointment)
+          <div class="col-lg-3">  
     	<h2>
       <b> Placa: {{ $appointment->license_plate}}</b>   
       </h2>
@@ -24,7 +27,7 @@
       </p>
       {!! Form::model($appointment, ['route' => ['Appointments.updateAttended', $appointment->id], 'method' => 'PUT']) !!}
                   <div class="row">
-                      <div class="col-sm-3">
+                      <div class="col-sm-12">
                           <div class="card text-center">
                             <label class="custom-control custom-checkbox">
                                   <input type="checkbox" class="custom-control-input "  name="attended" value="Si">
@@ -43,5 +46,8 @@
                        </div> 
                   </div>
            {!! Form::close() !!}
+          </div> 
           @endforeach
+     </div>
+  </div>     
 @endsection

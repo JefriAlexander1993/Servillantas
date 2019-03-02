@@ -15,10 +15,7 @@ class PermissionRoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
         $permission_roles1 = DB::table('permission_role')

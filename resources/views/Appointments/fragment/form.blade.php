@@ -9,12 +9,12 @@
 <div class="form-group">
     {!! Form::label('date', 'Fecha de la cita (*)')!!}
 
-   <input class="form-control date" name="date" required="" type="Date" value="<?php echo date("d-M-Y");?>">
+   <input class="form-control date" name="date" required="" type="Date" >
     </input> 
 </div>
 <div class="form-group">
     {!! Form::label('hour_end', 'Hora de la cita (*)')!!}
-    <input class="form-control date" name="hour_end" required="" type="Time" value="<?php echo date("H:i:s");  ?>">
+    <input class="form-control date" name="hour_end" required="" type="Time" >
     </input>
 </div>
 <div class="form-group">

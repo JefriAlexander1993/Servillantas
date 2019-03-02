@@ -5,7 +5,7 @@
     <div class="col-sm-10">
     	<h2>
 
-    		Listado de asiganciones de permisos a roles.
+    		Listado de asignaciones de permisos a roles.
     		<a href="{{ route('Permission_roles.create')}}" class="btn btn-success pull-right" title="Agregar permiso asignado a rol"><i class="fa fa-plus-square"></i></a>
     	</h2>
 			<table class="table table-hover" style="margin-top:8px">

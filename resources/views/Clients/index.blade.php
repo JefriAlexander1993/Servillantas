@@ -4,6 +4,7 @@
 <div class="col-sm-10">
     <h2>
         Listado de clientes.
+
     </h2>
     <table class="table table-hover" style="margin-top:8px">
         <tr>
@@ -50,22 +51,22 @@
                 {{ $user->phone }}
             </td>
             <td>
-                <a class="btn btn-secundary btn-xs " href="{{ route('Users.show', $user->id)}}" title="Ver Usuario">
+                <a class="btn btn-secundary btn-xs " href="{{ route('Clients.show', $user->id)}}" title="Ver cliente">
                     <i class="fa fa-eye">
                     </i>
                 </a>
             </td>
             <td>
-                <a class="btn btn-default btn-xs" href="{{ route('Users.edit', $user->id) }}">
-                    <i aria-hidden="true" class="fa fa-pencil-square-o " title="Editar usuario">
+                <a class="btn btn-default btn-xs" href="{{ route('Clients.edit', $user->id) }}">
+                    <i aria-hidden="true" class="fa fa-pencil-square-o " title="Editar cliente">
                     </i>
                 </a>
             </td>
             <td>
-                <form action="{{ route('Users.destroy', $user->id) }}" method="post">
+                <form action="{{ route('Clients.destroy', $user->id) }}" method="post">
                     <input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <button class="btn btn-danger btn-xs" title="Eliminar usuario" type="submit">
+                            <button class="btn btn-danger btn-xs" title="Eliminar cliente" type="submit">
                                 <i aria-hidden="true" class="fa fa-trash-o">
                                 </i>
                             </button>

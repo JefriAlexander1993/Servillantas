@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class ClientController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Display a listing of the resource.
@@ -52,6 +48,7 @@ class ClientController extends Controller
          return view('Clients.show', compact('client','vehicles'));
 
     }
+ 
 
     /**
      * Show the form for editing the specified resource.
@@ -77,6 +74,12 @@ class ClientController extends Controller
     {
         $client = User::find($id);
         $client->update($request->all());
+        return redirect()->route('Clients.show', Auth::id())
+            ->with('info', 'La cita fue actualizada exitosamente.');
+    }
+     public function desploy( $id)
+    {
+        $client = User::find($id)->delete();
         return redirect()->route('Clients.show', Auth::id())
             ->with('info', 'La cita fue actualizada exitosamente.');
     }

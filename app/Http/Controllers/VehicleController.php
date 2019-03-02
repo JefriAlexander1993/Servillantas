@@ -11,20 +11,10 @@ use DB;
 
 class VehicleController extends Controller
 {
-      public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-        /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('Vehicles.index', ['vehicles' => Vehicle::orderBy('id','desc')->paginate('8')] );
-
   
     }
 

@@ -18,10 +18,7 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
- public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function index(Request $request){
   
@@ -61,27 +58,43 @@ class AppointmentController extends Controller
 
     }
 
-
-
-
-
-    public function calendary()
-    {
+    public function allAppointments() {
           
-      $appointments= Appointment::where('attended','No')->get();
-      $appointments->sortBy('date');
-      $appointments->sortBy('hour_end');
+        $mes = date("m"); 
+        $dia =date("d");
+        $año =date("Y");
+        $appointments = DB::table('appointments')->where('attended','No')
+                ->whereMonth('date', $mes)
+                ->whereDay('date', $dia)
+                ->whereYear('date', $año)
+                ->get();
 
-      return view('Appointments.calendary', compact('appointments'));
-}
+        $appointments->sortBy('hour_end');        
+    
+      return view('Appointments.allAppointments', compact('appointments'));
+    }
+
+    public function myAppointments() {       
+        $mes = date("m"); 
+        $dia =date("d");
+        $año =date("Y");
+         
+      $appointments= Appointment::where('user_id', Auth::id())
+                ->whereMonth('date', $mes)
+                ->whereDay('date', $dia)
+                ->whereYear('date', $año)
+      ->get();
+
+      return view('Appointments.myAppointments', compact('appointments'));
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
+
         return view('Appointments.create');
     }
 
@@ -93,12 +106,17 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-       $validatedData = $request->validate([
-                'hour_end' => 'required|unique:appointments',
-            ]);
-         $appointment = Appointment::create($request->all());
+  
+         $appointment = new Appointment;
+         $appointment->license_plate = $request->license_plate;
+         $appointment->title = $request->title;
+         $appointment->description = $request->description;
+         $appointment->date = $request->date;
+         $appointment->hour_end= $request->hour_end;
+         $appointment->user_id= Auth::id();
+         $appointment->save();
     
-            return redirect()->route('Appointments.index')
+            return redirect()->route('Appointments.myAppointments')
                 ->with('info','La cita se fue ha guardado exitosamente.');
     }
 

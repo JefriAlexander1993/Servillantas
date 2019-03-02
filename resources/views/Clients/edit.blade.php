@@ -5,7 +5,7 @@
     <div class="col-sm-10">
     	<h2>
             Actualizar cliente.
-             <a href="{{ route('Clients.show',Auth::id())}}" class="btn btn-default pull-right" title="Listado de todos los productos."><i class="fa fa-eye"></i></a>  
+             <a href="{{ route('Clients.show',Auth::id())}}" class="btn btn-default pull-right" title="Ver cliente."><i class="fa fa-eye"></i></a>  
           
         </h2>
 

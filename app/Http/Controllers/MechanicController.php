@@ -15,16 +15,13 @@ class MechanicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
            $mechanics1 = DB::table('role_user')
                 ->join('roles', 'role_user.role_id', '=', 'roles.id')
                 ->join('users', 'role_user.user_id', '=', 'users.id')
-                ->select('users.*')->where('roles.name','ROL_ADMINISTRADOR') 
+                ->select('users.*')->where('roles.name','ROL_MECANICO') 
                 ->orderBy('id', 'desc')     
                 ->paginate('8');    
 

@@ -169,7 +169,6 @@
                                     </a>
                                 </li>
                             </ul>
-                      
                             @endif
                         </li>
                         <li class="treeview">
@@ -181,7 +180,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                @if((Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)))
+                                @role('ROL_ADMINISTRADOR')
                                 <li class="treeview">
                                     <a href="{{route('Appointments.index')}}">
                                         <i class="fa fa-circle-o">
@@ -189,8 +188,8 @@
                                         Lista de citas
                                     </a>
                                 </li>
-                                @endif
-                                @if((Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true||Auth::user()->hasRole('ROL_CLIENTE')=== true)))
+                                @endrole
+                                @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true||Auth::user()->hasRole('ROL_CLIENTE')=== true)
                                 <li class="treeview">
                                     <a href="{{route('Appointments.create')}}">
                                         <i class="fa fa-circle-o">
@@ -199,13 +198,24 @@
                                     </a>
                                 </li>
                                @endif
+                                @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_CLIENTE')=== true)
                                 <li>
-                                    <a href="{{url('Calendary')}}">
+                                    <a href="{{url('myAppointments')}}">
+                                        <i class="fa fa-circle-o">
+                                        </i>
+                                         Ver mis citas.
+                                    </a>
+                                </li>
+                                @endif
+                                 @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_MECANICO')=== true)
+                                <li>
+                                    <a href="{{route('Appointments.allAppointments')}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Programadas
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
                         @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
@@ -275,7 +285,7 @@
                                     </a>
                                 </li>
                                 @endif
-                            @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_CLIENTE')=== true)
+                          
                                    <li>
                                     <a href="{{route('Vehicles.create')}}">
                                         <i class="fa fa-circle-o">
@@ -283,7 +293,7 @@
                                         Crear vehiculos
                                     </a>
                                 </li>
-                            @endif    
+                              
                             </ul>
                         </li>
                         <li class="active treeview">
