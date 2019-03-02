@@ -291,7 +291,9 @@
                                 <i class="fa fa-angle-left pull-right">
                                 </i>
                             </a>
-                            <ul class="treeview-menu" id="MainMenu" style="display: none;">@if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
+                            @endif
+                            <ul class="treeview-menu" id="MainMenu" style="display: none;">
+                               @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true )
                                 <li>
                                     <a href="{{route('Clients.index')}}">
                                         <i class="fa fa-circle-o">
@@ -299,17 +301,18 @@
                                         Lista de clientes
                                     </a>
                                 </li>
-                                @endif
+                               @endif
                                 <li>
+                                      @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true|| Auth::user()->hasRole('ROL_CLIENTE')=== true)
                                     <a href="{{route('Clients.show', Auth::id() )}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Ver mi perfil
                                     </a>
+                                       @endif
                                 </li>
                             </ul>
-                       
-                            @endif
+                     
                         </li>
                         <li class="treeview">
                              @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true || Auth::user()->hasRole('ROL_MECANICO')=== true) 
@@ -485,19 +488,11 @@
                 allowClear:true,
                 });
                $("#idVehicle").select2({
-                placeholder:'Elige tu vehiculo.',
+                placeholder:'Elige el propietario.',
                 allowClear:true,
                 });
         </script>
+
     </body>
 </html>
-{{--
-<link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
-    <script src="bootstrap-editable/js/bootstrap-editable.js">
-    </script>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js">
-        </script>
-    </link>
-</link>
---}}
+

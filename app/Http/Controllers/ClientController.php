@@ -46,8 +46,8 @@ class ClientController extends Controller
     public function show($id)
     {
         $client = User::findOrFail($id);    
-        $vehicle= Vehicle::findOrFail($client->vehicle_id);
-        return view('Clients.show', compact('client','vehicle'));
+
+         return view('Clients.show', compact('client','vehicle'));
 
     }
 
@@ -61,9 +61,7 @@ class ClientController extends Controller
     {
         $client = User::find(Auth::id());
 
-         $vehicles = Vehicle::pluck('brand','id'); 
-        
-        return view('Clients.edit', compact('client','vehicles'));
+        return view('Clients.edit', compact('client'));
     }
 
     /**

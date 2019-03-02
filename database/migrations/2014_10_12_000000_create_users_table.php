@@ -23,8 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->datetime('date_birth')->nullable();
             $table->string('password')->nullable();
-            $table->integer('vehicle_id')->unsigned()->nullable();
-            $table->foreign('vehicle_id')->references('id')->on('vehicles');
+           
             $table->rememberToken();
             $table->timestamps();
         });

@@ -28,16 +28,13 @@
          <p><b>email:</b>
             {{ $client->email}}
          </p>
-         <p><b>Vehiculo:</b>
-            {{ $vehicle->brand}}
-         </p>  
-         <p><b>Placa:</b>
-            {{ $vehicle->license_plate}}
-         </p>  
-          
+ 
     </div>
-    
-    <div class="col-sm-2">
+    <!-- Latest compiled and minified CSS -->
+  <div class="col-sm-2">
     	@include('Clients.fragment.aside')
     </div>
+    <script type="text/javascript">
+        
+    </script>
 @endsection

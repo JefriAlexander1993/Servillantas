@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Vehicle;
+use App\User;
+
 
 class VehicleController extends Controller
 {
@@ -30,8 +33,10 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('Vehicles.create');
+    {   
+        $clients = User::pluck('name_user','id'); 
+
+        return view('Vehicles.create',compact('clients'));
     }
 
     /**
@@ -41,11 +46,16 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $vehicle = Vehicle::create($request->all())->save();
-
-              return redirect()->route('Vehicles.index')
+    {   
+        $user = User::findOrFail(Auth::id());
+         if($user->nuip===$request->nuip){
+            $vehicle = Vehicle::create($request->all())->save();
+            return redirect()->route('Vehicles.index')
                 ->with('info','El vehiculo se ha guardado exitosamente.');
+        }
+            return back()
+                ->with('danger','El nuip no conside con el usuario.');
+ 
     }
 
     /**
@@ -56,6 +66,8 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
+         // $client=User::findOrFail(Auth::id());
+         
          return view('Vehicles.show' ,[ 'vehicle' => Vehicle::findOrFail($id)]);
     }
 
@@ -66,8 +78,9 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-         return view('Vehicles.edit' ,[ 'vehicle' => Vehicle::findOrFail($id)]);
+    {    
+         
+         return view('Vehicles.edit' ,[ 'vehicle' => Vehicle::findOrFail($id),'clients'=>User::pluck('name_user','id')]);
     }
 
     /**
@@ -78,11 +91,17 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-         $vehicle = Vehicle::find($id)->update($request->all());   
+    {   
+          
+        $user = User::findOrFail(Auth::id());
 
+         if($user->nuip===$request->nuip){
+           $vehicle = Vehicle::findOrFail($id)->update($request->all()); 
             return redirect()->route('Vehicles.index')
-                ->with('info','La información del vehiculo fue actualizada exitosamente.');
+                ->with('info','El vehiculo se ha guardado exitosamente.');
+        }
+            return back()
+                ->with('danger','El nuip no conside con el usuario.');
     }
 
     /**

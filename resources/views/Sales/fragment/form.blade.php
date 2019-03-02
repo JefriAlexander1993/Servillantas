@@ -36,7 +36,7 @@
                   
                         <div class="col-sm-11"> 
                          
-                                <div class="form-group row has-success">
+                                <div class="form-group row ">
                                 {!! Form::label('code','Buscar(*).')!!}<br/>
                                 {!!Form::select('code',$products, null,['class'=>'form-control','title'=>'Ingresa un codigo de un articulo existente', 'required'=>'required','name'=>'codeProduct', 'id'=>'codeProduct', 'placeholder'=>'Elige un producto','style'=>'width:900px'])!!}
                                 </div>
@@ -98,7 +98,7 @@
         <div class="accordion-content">
                 <div class="row">
                     <div class="col-sm-11">
-                       <div class="form-group row has-success">
+                       <div class="form-group row ">
                                 {!! Form::label('code','Buscar(*).')!!}<br/>
                                 {!!Form::select('code',$services, null,['class'=>'form-control','title'=>'Ingresa un codigo de un servicio existente', 'required'=>'required','name'=>'codeService', 'id'=>'codeService', 'placeholder'=>'Elige un servicio','style'=>'width:900px'])!!}
                                 </div>

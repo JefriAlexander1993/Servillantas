@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-     @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
 <div class="col-sm-10">
     <h2>
         Listado de clientes.
@@ -85,10 +84,6 @@
 <div class="col-sm-2">
     @include('Admin.Users.fragment.aside')
 </div>
-@else
-<h2 class="text-center">
-    No estas autorizado.
-</h2>
-@endif
+
 
 @stop

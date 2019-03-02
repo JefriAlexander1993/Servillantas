@@ -45,12 +45,7 @@
 		{!!Form::date('date_birth',null,['class'=>'form-control','title'=>'Fecha de cumpleaños.','id'=>'date_birth'])!!}
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group ">
-        {!! Form::label('vehicle_id','Buscar(*).')!!}<br/>
-        {!!Form::select('vehicle_id',$vehicles, null,['class'=>'form-control','title'=>'Ingresa un codigo de un articulo existente', 'required'=>'required','name'=>'vehicle_id', 'id'=>'idVehicle', 'placeholder'=>'Elige un producto','style'=>'width:265px'])!!}
-        </div>
-    </div>
+ 
              
 </div>
 <div class="form-group text-center">
