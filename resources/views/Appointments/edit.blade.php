@@ -12,9 +12,7 @@
         </h2>
 
            {!! Form::model($appointment, ['route' => ['Appointments.update', $appointment->id], 'method' => 'PUT']) !!}
-
            @include('Appointments.fragment.form')
-
            {!! Form::close() !!}
     </div>
    

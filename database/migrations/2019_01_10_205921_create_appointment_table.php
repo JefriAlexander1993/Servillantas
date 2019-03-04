@@ -22,7 +22,7 @@ class CreateAppointmentTable extends Migration
                 $table->mediumText('description'); 
                 $table->date('date');         
                 $table->timeTz('hour_end');
-                $table->string('state')->default('No asignada');
+                $table->string('state')->nullable();
                 $table->string('attended')->default('No');
                 $table->integer('user_id')->unsigned()->nullable();
                 $table->foreign('user_id')->references('id')->on('users');

@@ -31,21 +31,9 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_ADMINISTRADOR']
 	//Actualizar personalizada
 	Route::put('Appointments/assignationUpdate/{id}', 'AppointmentController@assignationUpdate')->name('Appointments.assignationUpdate');
 	//Actualizar atendida o no-personalizada
-	Route::put('Appointments/updateAttended/{id}', 'AppointmentController@updateAttended')->name('Appointments.updateAttended');
-	//Crear
-	Route::get('Appointments/create', 'AppointmentController@create')->name('Appointments.create');
-	//Actualizar
-	Route::put('Appointments', 'AppointmentController@update')->name('Appointments.update');
-
-	//Editar
-	Route::get('Appointments/{id}/edit', 'AppointmentController@edit')->name('Appointments.edit');
-
-	//Ver
-	Route::get('Appointments/{id}', 'AppointmentController@show')->name('Appointments.show');
-	// Ver mis citas.
-	Route::get('myAppointments', 'AppointmentController@myAppointments')->name('Appointments.myAppointments');
-    //Eliminar
-	Route::delete('Appointments/{id}', 'AppointmentController@destroy')->name('Appointments.destroy');
+	//------------------------------------Mecanicos--------------------------//
+	Route::get('Mechanics','MechanicController@index')->name('Mechanics.index');
+	Route::delete('Mechanics/{id}','MechanicController@destroy')->name('Mechanics.destroy');
 
 	//-----------------------------Usuarios---------------------------------------//
 	Route::resource('Users', 'UserController');
@@ -96,7 +84,7 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_CLIENTE|ROL_ADM
 	//Crear
 	Route::get('Appointments/create', 'AppointmentController@create')->name('Appointments.create');
 	//Actualizar
-	Route::put('Appointments', 'AppointmentController@update')->name('Appointments.update');
+	Route::put('Appointments/{id}', 'AppointmentController@update')->name('Appointments.update');
 	//Guardar
 	Route::post('Appointments', 'AppointmentController@store')->name('Appointments.store');
 
@@ -108,6 +96,7 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_CLIENTE|ROL_ADM
 	Route::get('Appointments/{id}', 'AppointmentController@show')->name('Appointments.show');
 	// Ver mis citas.
 	Route::get('myAppointments', 'AppointmentController@myAppointments')->name('Appointments.myAppointments');
+	Route::put('Appointments/updateAttended/{id}', 'AppointmentController@updateAttended')->name('Appointments.updateAttended');
 	//-----------------------------------------Vehiculos-----------------------------------//
 	Route::get('Vehicles/create','VehicleController@create')->name('Vehicles.create');
 	Route::post('Vehicles','VehicleController@store')->name('Vehicles.store');
@@ -129,9 +118,7 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_MECANICO|ROL_AD
 	Route::put('Mechanics/{id}','MechanicController@update')->name('Mechanics.update');
 });
 
-	//------------------------------------Mecanicos--------------------------//
-	Route::get('Mechanics','MechanicController@index')->name('Mechanics.index')->middleware('auth','role:ROL_ADMINISTRADOR');
-	Route::delete('Mechanics/{id}','MechanicController@destroy')->name('Mechanics.destroy')->middleware('auth','role:ROL_ADMINISTRADOR');
+	
 	//------------------------------------Vehiculos-------------------------//
 
 //Exportar

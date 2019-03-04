@@ -151,9 +151,8 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $appointment = Appointment::find($id)->update($request->all());
-
-            return redirect()->route('Appointments.index')
+        $appointment = Appointment::findOrFail($id)->update($request->all());
+       return redirect()->route('Appointments.index')
                 ->with('info','La cita fue actualizada exitosamente.');
 
     }
@@ -185,7 +184,6 @@ class AppointmentController extends Controller
     {
             $appointment =  Appointment::find($id)->delete();
                
-
         return back()->with('danger','La cita fue eliminada exitosamente.');
     }
 }
