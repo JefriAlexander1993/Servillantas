@@ -141,28 +141,28 @@
                                     </a>
                                 </li>
                                 <li class="active">
-                                    <a "="" href="{{route('Roles.index')}}">
+                                    <a  href="{{route('Roles.index')}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Roles
                                     </a>
                                 </li>
                                 <li class="active">
-                                    <a "="" href="{{route('Permissions.index')}}">
+                                    <a href="{{route('Permissions.index')}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Permisos
                                     </a>
                                 </li>
                                 <li class="active">
-                                    <a "="" href="{{route('Role_users.index')}}">
+                                    <a  href="{{route('Role_users.index')}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Asignación de roles
                                     </a>
                                 </li>
                                 <li class="active">
-                                    <a "="" href="{{route('Permission_roles.index')}}">
+                                    <a  href="{{route('Permission_roles.index')}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Asignación  de permisos

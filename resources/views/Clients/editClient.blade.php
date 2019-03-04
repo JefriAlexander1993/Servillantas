@@ -9,9 +9,9 @@
           
         </h2>
 
-           {!! Form::model($client, ['route' => ['Clients.update', $client->id], 'method' => 'PUT']) !!}
+           {!! Form::model($client, ['route' => ['Clients.updateClient', $client->id], 'method' => 'PUT']) !!}
 
-           @include('Clients.fragment.form')
+           @include('Clients.fragment.formEdit')
 
            {!! Form::close() !!}
     </div>

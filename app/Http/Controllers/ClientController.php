@@ -56,13 +56,38 @@ class ClientController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
-        $client = User::find(Auth::id());
+        // $client = DB::table('role_user')
+        //     ->join('roles', 'role_user.role_id', '=', 'roles.id')
+        //     ->join('users', 'role_user.user_id', '=','users.id')
+        //     ->where('roles.name', 'ROL_CLIENTE')
+        //     ->where('users.id', $id)
+        //     ->select('users.*')
+        //     ->get();
+
+        //     dd($client);
+         $client = User::find($id);
 
         return view('Clients.edit', compact('client'));
     }
 
+        public function editClient($id)
+    {
+        // $client = DB::table('role_user')
+        //     ->join('roles', 'role_user.role_id', '=', 'roles.id')
+        //     ->join('users', 'role_user.user_id', '=','users.id')
+        //     ->where('roles.name', 'ROL_CLIENTE')
+        //     ->where('users.id', $id)
+        //     ->select('users.*')
+        //     ->get();
+
+        //     dd($client);
+         $client = User::find($id);
+
+        return view('Clients.editClient', compact('client'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -74,7 +99,15 @@ class ClientController extends Controller
     {
         $client = User::find($id);
         $client->update($request->all());
-        return redirect()->route('Clients.show', Auth::id())
+        return redirect()->route('Clients.index')
+            ->with('info', 'La cita fue actualizada exitosamente.');
+    }
+
+    public function updateClient(Request $request, $id)
+    {
+        $client = User::find($id);
+        $client->update($request->all());
+        return redirect()->route('Clients.show',Auth::id())
             ->with('info', 'La cita fue actualizada exitosamente.');
     }
      public function desploy( $id)

@@ -7,7 +7,7 @@
     	<h4>
            <b> NOMBRE: {{ $client->name_user }}</b>
       
-            <a href="{{ route('Clients.edit', Auth::id())}}" class="btn btn-primary pull-right" title="Actualizar cliente"> <i class="fa fa-edit"></i></a>           
+            <a href="{{ route('Clients.editClient', $client->id)}}" class="btn btn-primary pull-right" title="Actualizar cliente"> <i class="fa fa-edit"></i></a>           
         </h4>
              
         <p><b>Apellidos:</b>

@@ -87,7 +87,11 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_CLIENTE|ROL_ADM
 	//-------------------------------------Clientes-----------------------------------------
 	Route::get('Clients/{id}','ClientController@show')->name('Clients.show');
 	Route::get('Clients/{id}/edit','ClientController@edit')->name('Clients.edit');
-	Route::put('Clients/{id}','ClientController@update')->name('Clients.update');	
+	Route::get('Clients/{id}/editClient','ClientController@editClient')->name('Clients.editClient');
+	Route::put('Clients/{id}','ClientController@update')->name('Clients.update');
+
+	Route::put('ClientUpdate/{id}','ClientController@updateClient')->name('Clients.updateClient');
+
 	//---------------------------------------Citas-----------------------------------------//
 	//Crear
 	Route::get('Appointments/create', 'AppointmentController@create')->name('Appointments.create');
