@@ -4,7 +4,7 @@
         <meta charset="utf-8">
             <meta content="IE=edge" http-equiv="X-UA-Compatible">
                 <title>
-                    Servillantas | El cerrito
+                    Servillantas El Cerrito
                 </title>
                 <!-- Tell the browser to be responsive to screen width -->
                 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -17,7 +17,7 @@
                                 <link href="{{asset('css/AdminLTE.min.css')}}" rel="stylesheet">
                                     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-                                    <link href="{{asset('css/_all-skins.min.css')}}" rel="stylesheet">
+                                    <link href="{{asset('css/_all-skins.css')}}" rel="stylesheet">
                                         <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
                                             <link href="{{asset('img/favicon.ico')}}" rel="shortcut icon">
                                             </link>
@@ -37,13 +37,14 @@
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
+            
             <header class="main-header">
                 <!-- Logo -->
                 <a class="logo" href="#">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini">
                         <b>
-                            AD
+                            SEC
                         </b>
                         V
                     </span>
@@ -81,10 +82,7 @@
                                     <!-- User image -->
                                     <li class="user-header">
                                         <p>
-                                            www.incanatoit.com - Desarrollando Software
-                                            <small>
-                                                www.youtube.com/jcarlosad7
-                                            </small>
+                                            <img class="img-fluid mb-5" src="img/servi2.png" alt="">
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
@@ -119,6 +117,8 @@
                                 MENÚ
                             </b>
                         </li>
+
+
                         <li class="active treeview" id="menu">
                             @if(Auth::user()->hasRole('ROL_ADMINISTRADOR')=== true)
                             <a href="#">
@@ -352,8 +352,8 @@
                                     </a>
                                 </li>
                               @endif  
-                                <li>
-                                    <a href="{{route('Mechanics.show', Auth::id() )}}">
+                              <li>
+                                    <a href="{{route('Mechanics.showMecanic', Auth::id() )}}">
                                         <i class="fa fa-circle-o">
                                         </i>
                                         Ver mi perfil
@@ -441,12 +441,12 @@
                     <b>
                         Version
                     </b>
-                    2.3.0
+                    1.0
                 </div>
                 <strong>
-                    Copyright © 2015-2020
+                    Copyright © 2019-2024
                     <a href="www.incanatoit.com">
-                        IncanatoIT
+                        Juan sebastian campiño alegria
                     </a>
                     .
                 </strong>

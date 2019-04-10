@@ -38,7 +38,7 @@
                          
                                 <div class="form-group row ">
                                 {!! Form::label('code','Buscar(*).')!!}<br/>
-                                {!!Form::select('code',$products, null,['class'=>'form-control','title'=>'Ingresa un codigo de un articulo existente', 'required'=>'required','name'=>'codeProduct', 'id'=>'codeProduct', 'placeholder'=>'Elige un producto','style'=>'width:900px'])!!}
+                                {!!Form::select('code',$products, null,['class'=>'form-control','title'=>'Ingresa un codigo de un articulo existente','name'=>'codeProduct', 'id'=>'codeProduct', 'placeholder'=>'Elige un producto','style'=>'width:900px'])!!}
                                 </div>
                         </div>
                    
@@ -99,8 +99,8 @@
                 <div class="row">
                     <div class="col-sm-11">
                        <div class="form-group row ">
-                                {!! Form::label('code','Buscar(*).')!!}<br/>
-                                {!!Form::select('code',$services, null,['class'=>'form-control','title'=>'Ingresa un codigo de un servicio existente', 'required'=>'required','name'=>'codeService', 'id'=>'codeService', 'placeholder'=>'Elige un servicio','style'=>'width:900px'])!!}
+                                {!! Form::label('codes','Buscar(*).')!!}<br/>
+                                {!!Form::select('codes',$services, null,['class'=>'form-control','title'=>'Ingresa un codigo de un servicio existente', 'name'=>'codeService', 'id'=>'codeService', 'placeholder'=>'Elige un servicio','style'=>'width:900px'])!!}
                                 </div>
                     </div>   
                     <div class="col-sm-1">
@@ -116,7 +116,7 @@
 
                 <div class="form-group">
                       <input id="url_service" type="hidden" value="{{url('Service/getService/')}}">
-                    <input class="form-control" id="quantityService" name="quantityServices" type="hidden" value="0">
+                    <input class="form-control" id="quantityService" name="quantityService" type="hidden" value="0">
                     </input>
                 </div>
                 <table class="table table-header" id="tbl-service">
@@ -153,6 +153,6 @@
     {!!Form::button('
     <i aria-hidden="true" class="fa fa-floppy-o">
     </i>
-    ', array('type' => 'sublime', 'id'=>'submitSale', 'class'=>'btn btn-primary btn-lg btn-block', 'onclick'=>'confirmacion()' ))!!}
+    ', array('type' => 'sublime', 'id'=>'submitSale', 'class'=>'btn btn-primary btn-lg btn-block'))!!}
 </div>
 

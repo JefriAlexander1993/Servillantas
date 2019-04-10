@@ -92,36 +92,6 @@ class ProductController extends Controller
 
     }
 
-    public function cargarProductsByCode() //Funcion que obtiene un articulo por medio de su codigo
 
-    {
-
-        $code = DB::table('sales_products')->join('products', 'sales_products.product_id', 'products.id')->select('code')->distinct()->get();
-
-        for ($i = 0; $i < count($code); $i++) {
-            $product = DB::table('products')->where('code', $code[$x])->get(['id', 'code', 'name',
-                'price']);
-        }
-
-        if (count($product) > 0) {
-            return response()->json([
-
-                "datos" => $product,
-                "code"  => 200,
-
-            ]);
-
-        } else {
-
-            return response()->json([
-
-                "error" => 'No existen datos con ese codigo.',
-                "code"  => 600,
-
-            ]);
-
-        }
-
-    }
 
 }

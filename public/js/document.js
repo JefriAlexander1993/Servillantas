@@ -1,17 +1,41 @@
 $(document).ready(function() {
     setTimeout(function() {
         // Declaramos la capa mediante una clase para ocultarlo
-        $("#error").fadeOut(1500);
-    }, 1800);
+        $("#error").fadeOut(1700);
+    }, 2000);
     setTimeout(function() {
         // Declaramos la capa mediante una clase para ocultarlo
-        $("#delete").fadeOut(1500);
-    }, 1800);
+        $("#delete").fadeOut(1700);
+    }, 2000);
     setTimeout(function() {
         // Declaramos la capa mediante una clase para ocultarlo
-        $("#success").fadeOut(1500);
-    }, 1800);
+        $("#success").fadeOut(1700);
+    }, 2000);
+
+
 });
+
+$('#export').on('click', function() {
+
+        $("#myModal").show();
+        $('#añoService').val('');
+        $('#mesService').val('');
+        $('#diaService').val('');
+        $('#añoProduct').val('');
+        $('#mesProduct').val('');
+        $('#diaProduct').val('');
+        $('#añoPS').val('');
+        $('#mesPS').val('');
+        $('#diaPS').val('');
+        
+});
+$('#close').on('click', function() {
+
+       $("#myModal").hide();
+        
+});
+
+
 //--------------------------------------------ELIMINAR--------------------------------------------------//
 $('#btn-deleteSale').on('click', function() {
     swal({
@@ -147,6 +171,8 @@ function addRowProduct() {
     });
 }
 /*************    Adicionar filas de servicios    ************/
+
+// cambio
 function addRowService() {
     $.ajax({
         url: $('#url_service').val() + '/' + $('#codeService').val(),
@@ -157,11 +183,11 @@ function addRowService() {
                 $(data.datos).each(function(index, el) {
                     // var totaIva = parseFloat(el.sale_price) * parseFloat(el.iva) / 100;
                     var row = '<tr id="fila1' + el.id + '">\n\
-    <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="code' + el.id + '" name="code[]" value="' + el.code + '"></td>\n\
-    <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="name' + el.id + '" name="name[]" value="' + el.name + '"></td>\n\
+    <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="codes' + el.id + '" name="codes[]" value="' + el.codes+ '"></td>\n\
+    <td align="center"><input readonly="readonly" style="border:none;text-align:center"  type="text" id="name' + el.id + '" name="name[]" value="' + el.names + '"></td>\n\
     <td align="center"><input style="border:none;text-align:center"  type="number" id="quantityS' + el.id + '" min="1" pattern="^[0-9]+"  name="quantityS[]" onkeyup="totalizarService(' + el.id + ')"; value="1"></td>\n\
-    <td align="center"><input style="border:none;text-align:center" readonly="readonly" type="text" id="priceService' + el.id + '" name="priceService[]" value="' + el.price + '"></td>\n\
-    <td align="center"><input readonly="readonly"  style="border:none;text-align:center" type="text" id="totalService' + el.id + '" name="total[]" step="0.01" value="' + el.price + '"></td>\n\
+    <td align="center"><input style="border:none;text-align:center" readonly="readonly" type="text" id="priceService' + el.id + '" name="priceService[]" value="' + el.prices + '"></td>\n\
+    <td align="center"><input readonly="readonly"  style="border:none;text-align:center" type="text" id="totalService' + el.id + '" name="total[]" step="0.01" value="' + el.prices + '"></td>\n\
     <td align="center"><a id="btn-borrar' + el.id + '" class="btn btn-danger btn-sm" onclick="deleteService(' + el.id + ')" ><i class="fa fa-trash" ></i></a></td>\n\
     </tr>';
                     $('#tbl-service tbody').append(row);
@@ -343,5 +369,5 @@ var data_edit = function(tbody, table) {
 }
 $(document).ready(function() {
     data_edit();
+
 });
-//----------------------------------------------------------Filter----------------------------------------------------

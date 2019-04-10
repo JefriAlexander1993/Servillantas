@@ -26,7 +26,9 @@ class CreateAppointmentTable extends Migration
                 $table->string('attended')->default('No');
                 $table->integer('user_id')->unsigned()->nullable();
                 $table->foreign('user_id')->references('id')->on('users');
-                $table->timestamps();   
+                $table->timestamps();
+                $table->integer('mechanic_id')->unsigned()->nullable();
+                $table->foreign('mechanic_id')->references('id')->on('users');   
          }); 
     }
 

@@ -1,18 +1,18 @@
 <div class="form-group">
-    {!! Form::label('code', 'Codigo (*)')!!}
-	{!! Form::text('code',null,['class'=> 'form-control','required'=>'required']) !!}
+    {!! Form::label('codes', 'Codigo (*)')!!}
+	{!! Form::text('codes',null,['class'=> 'form-control','required'=>'required']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('name', 'Nombre del servicio (*)')!!}
-	{!! Form::text('name',null,['class'=> 'form-control','required'=>'required']) !!}
+    {!! Form::label('names', 'Nombre del servicio (*)')!!}
+	{!! Form::text('names',null,['class'=> 'form-control','required'=>'required']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('price', 'Precio del servicio (*)')!!}
-	{!! Form::number('price',null,['class'=> 'form-control','required'=>'required']) !!}
+    {!! Form::label('prices', 'Precio del servicio (*)')!!}
+	{!! Form::number('prices',null,['class'=> 'form-control','required'=>'required']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('body','Descripcion del servicio')!!}
-	{!! Form::textarea('body',null,['class'=> 'form-control','cols'=>"40" ,'rows'=>"5"]) !!}
+    {!! Form::label('bodys','Descripcion del servicio')!!}
+	{!! Form::textarea('bodys',null,['class'=> 'form-control','cols'=>"40" ,'rows'=>"5"]) !!}
 </div>
 <div class="form-group text-center">
     {!!Form::button('

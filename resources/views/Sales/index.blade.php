@@ -18,6 +18,12 @@
         </div>
     </div>
 </div>
+
+<button type="button" class="btn btn-primary" id="export">Exportar
+</button>
+
+
+<br/>
 <div class="row">
     <div class="col-sm-8" style="text-align:center">
         <h2>
@@ -30,6 +36,7 @@
         @include('Sales.fragment.aside')
     </div>
 </div>
+   
 <div class="col-md-12 table-responsive">
     <table class="table table-hover ">
         <thead>
@@ -67,11 +74,14 @@
                     </a>
                 </td>
                 <td align="center">
-                    <input id="idSale" style="width:20px" type="hidden" value="{{$sale1->id}}"/>
-                    <button class="btn btn-xs btn-danger" id="btn-deleteSale">
-                        <i aria-hidden="true" class="fa fa-trash-o">
-                        </i>
-                    </button>
+                        <form action="{{ route('Sales.destroy', $sale1->id) }}" method="POST">
+                            {{ csrf_field() }}
+                                   <input id="idSale" style="width:20px" type="hidden" name="_method" value="DELETE" > 
+                           <button class="btn btn-xs btn-danger" id="btn-deleteSale" title="Eliminar ventas">
+                            <i aria-hidden="true" class="fa fa-trash-o"></i>
+                          </button>
+                        </form>
+             
                 </td>
                 @endforeach
             </tr>
@@ -81,4 +91,5 @@
 <div class="text-center">
     {!! $sales0->render() !!}
 </div>
+@include('fragment.modalExport')
 @endsection

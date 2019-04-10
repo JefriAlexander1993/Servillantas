@@ -18,6 +18,7 @@
                     @endif
 
                     <h5><b>Usted se ha logeado satisfatoriamente.</b><h5>
+                        <img class="img-fluid mb-5" src="img/servi2.png" alt="">
                 </div>
             </div>
         </div>

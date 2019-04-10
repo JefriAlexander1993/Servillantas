@@ -13,12 +13,13 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
+        // Cambios s ele agrego la s
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->double('price');
-            $table->mediumtext('body');
+            $table->string('codes')->unique();
+            $table->string('names');
+            $table->double('prices');
+            $table->mediumtext('bodys');
             $table->timestamps();
         });
     }

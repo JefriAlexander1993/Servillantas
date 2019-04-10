@@ -23,10 +23,12 @@
             <div class="panel-body">
                 @foreach ($detalles as $detalle1)
                 <div class="col-sm-6">
+                   <p>
                     <b>
                         Nombre:
                     </b>
                     {{ $detalle1->name }}
+                   </p>  
                     <p>
                         <b>
                             Codigo:
@@ -38,12 +40,6 @@
                             Precio:
                         </b>
                         {!! $detalle1->price !!}
-                    </p>
-                    <p>
-                        <b>
-                            Descripción:
-                        </b>
-                        {!! $detalle1->body !!}
                     </p>
                 </div>
                 @endforeach
@@ -63,10 +59,12 @@
             <div class="panel-body">
                 @foreach ($detallesServicios as $detalle)
                 <div class="col-sm-6">
-                    <b>
-                        Nombre:
-                    </b>
-                    {{ $detalle->name }}
+                    <p>
+                        <b>
+                            Nombre:
+                        </b>
+                        {{ $detalle->names }}
+                    </p>
                     <p>
                         <b>
                             Codigo:
@@ -77,13 +75,7 @@
                         <b>
                             Precio:
                         </b>
-                        {!! $detalle->price !!}
-                    </p>
-                    <p>
-                        <b>
-                            Descripción:
-                        </b>
-                        {!! $detalle->body !!}
+                        {!! $detalle->prices !!}
                     </p>
                 </div>
                 @endforeach

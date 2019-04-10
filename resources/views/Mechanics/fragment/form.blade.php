@@ -1,14 +1,20 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group ">
-            {!! Form::label('id','Nombre(*).')!!}
-            {!!Form::text('id',null,['class'=>'form-control','Nombre del usuario','title'=>'Nombre.','id'=>'name','required'=>'required'])!!}
+            {!! Form::label('name_user','Nombre(*).')!!}
+            {!!Form::text('name_user',null,['class'=>'form-control','Nombre del usuario','title'=>'Nombre.','id'=>'name','required'=>'required'])!!}
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="form-group">
             {!!Form::label('lastname','Apellidos(*).')!!}
         {!!Form::text('lastname',null,['class'=>'form-control','title'=>'Apellidos.','id'=>'lastname'])!!}
+        </div>
+    </div>
+        <div class="col-sm-4">
+        <div class="form-group">
+            {!!Form::label('nuip','Cedula(*).')!!}
+        {!!Form::text('nuip',null,['class'=>'form-control','title'=>'Cedula','id'=>'nuip'])!!}
         </div>
     </div>
 </div>

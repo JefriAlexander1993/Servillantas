@@ -34,7 +34,7 @@
                                   <span class="custom-control-indicator"></span>
                                   <span class="custom-control-description">Si</span>
                             </label>
-                            <input type="text" name="nuipM" required class="form-control" value="Ingresa tu numero de nuip">
+                            <input type="text" name="nuipM" required class="form-control" placeholder="Ingresa tu numero de nuip">
                              <br/>
                           <div class="list-control text-left">
                                 {!!Form::button('

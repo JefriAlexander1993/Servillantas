@@ -3,7 +3,7 @@
  * ----------
  */
 .skin-blue .main-header .navbar {
-  background-color: #3c8dbc;
+  background-color: rgb(60,141,188);
 }
 .skin-blue .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -43,7 +43,7 @@
   }
 }
 .skin-blue .main-header .logo {
-  background-color: #367fa9;
+  background-color: rgb(60,141,188);
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
@@ -294,6 +294,7 @@
 @media (min-width: 768px) {
   .skin-blue-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-left: 1px solid #d2d6de;
+
   }
 }
 .skin-blue-light .main-footer {

@@ -56,6 +56,10 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_ADMINISTRADOR']
 	Route::resource('Services', 'ServiceController')->middleware('auth','role:ROL_ADMINISTRADOR');
 	//----------------------------------------Pdf--------------------------------------------//
 	Route::get("/usersPdf", "UserController@exportUsersPdf");
+	
+	Route::get("/salesProductPdf", "SaleController@exportSalesProduct");
+	Route::get("/salesServicePdf", "SaleController@exportSalesService");
+	Route::get("/salesProductServicePdf", "SaleController@exportSalesServiceProduct");
 	Route::get("/usersExcel", "UserController@exportUsersExcel");
 	//----------------------------------------Mecanico---------------------------------------//
 	Route::get('Mechanics/assignationShow/{id}', 'MechanicController@assignedShow');
@@ -96,7 +100,7 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_CLIENTE|ROL_ADM
 	Route::get('Appointments/{id}', 'AppointmentController@show')->name('Appointments.show');
 	// Ver mis citas.
 	Route::get('myAppointments', 'AppointmentController@myAppointments')->name('Appointments.myAppointments');
-	Route::put('Appointments/updateAttended/{id}', 'AppointmentController@updateAttended')->name('Appointments.updateAttended');
+
 	//-----------------------------------------Vehiculos-----------------------------------//
 	Route::get('Vehicles/create','VehicleController@create')->name('Vehicles.create');
 	Route::post('Vehicles','VehicleController@store')->name('Vehicles.store');
@@ -114,8 +118,12 @@ Route::group(['prefix' => '/', 'middleware' => ['auth','role:ROL_MECANICO|ROL_AD
  	Route::get('Mechanics/assignationShow/{id}', 'MechanicController@assignedShow');
  	//------------------------------------Mecanicos--------------------------//
 	Route::get('Mechanics/{id}','MechanicController@show')->name('Mechanics.show');
+
+	Route::get('MechanicsPerfil/{id}','MechanicController@showMecanic')->name('Mechanics.showMecanic');
+	
 	Route::get('Mechanics/{id}/edit','MechanicController@edit')->name('Mechanics.edit');
 	Route::put('Mechanics/{id}','MechanicController@update')->name('Mechanics.update');
+		Route::put('Appointments/updateAttended/{id}', 'AppointmentController@updateAttended')->name('Appointments.updateAttended');
 });
 
 	

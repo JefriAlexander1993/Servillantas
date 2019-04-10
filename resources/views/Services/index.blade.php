@@ -22,12 +22,12 @@
             <tbody>
             	@foreach($services1 as $service)
                 <tr>
-                    <td>{{ $service->code}}</td>
-                	<td>{{ $service->name }}</td>
-                    <td>{{ $service->price }}</td>
-                    <td>{{ $service->body}}</td>
+                    <td>{{ $service->codes}}</td>
+                	<td>{{ $service->names }}</td>
+                    <td>{{ $service->prices }}</td>
+                    <td>{{ $service->bodys}}</td>
                 	<td>
-                		<a href="{{ route('Services.show', $service->id)}}" class="btn btn-link  btn-xs"><i class="fa fa-eye"></i</a>
+                		<a href="{{ route('Services.show', $service->id)}}" class="btn btn-link  btn-xs"><i class="fa fa-eye"></i></a>
                 	</td>
                 	<td>
                 	    <a href="{{ route('Services.edit', $service->id)}}" class="btn btn-primary  btn-xs"><i class="fa fa-edit"></i></a>

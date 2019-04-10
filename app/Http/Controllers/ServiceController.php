@@ -24,13 +24,13 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        if (Service::codeUnique($request->code)) {
+        if (Service::codeUnique($request->codes)) {
 
             $service = Service::create($request->all())->save();
             return redirect()->route('Services.index')
                 ->with('info', 'El servicio fue guardado exitosamente.');
         } else {
-            return back()->with('danger', 'El codigo' . $request->code . 'ya esta asociado a un servicio.');
+            return back()->with('danger', 'El codigo' . $request->codes . 'ya esta asociado a un servicio.');
 
         }
 
@@ -67,11 +67,10 @@ class ServiceController extends Controller
     }
 
     public function getServiceByCode($code) //Funcion que obtiene un articulo por medio de su codigo
-
     {
-
-        $service = DB::table('services')->where('code', $code)->get(['id', 'code', 'name',
-            'price']);
+        /*Se modifico*/
+        $service = DB::table('services')->where('codes', $code)->get(['id', 'codes', 'names',
+            'prices']);
 
         if (count($service) > 0) {
             return response()->json([

@@ -41,7 +41,12 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client = User::findOrFail($id);    
+        $client = User::findOrFail($id);  
+        $clientUser=DB::table('role_user')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
+                ->join('users', 'role_user.user_id', '=', 'users.id')
+                ->select('users.*')
+                ->where('users.id', $client->id)->first();  
 
         $vehicles =DB::table('vehicles')->where('user_id',$client->id)->get();
                

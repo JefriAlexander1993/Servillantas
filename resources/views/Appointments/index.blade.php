@@ -70,13 +70,11 @@
                         </thead>
                         <tbody>
                             @foreach ($appointments as $appointment)
-                            <tr  @if(
-                                $appointment->user_id === null)
-										       				 style="background-color:#EF5350;color:#fff",
-										       			@else
-										       			 style="background-color:green;color:#fff",
-
-       													@endif
+                            <tr  @if($appointment->state === null)
+                                  style="background-color:#EF5350;color:#fff",
+                                @else
+                                 style="background-color:green;color:#fff",
+                            @endif
 
 										       	>
                                 <td align="center">

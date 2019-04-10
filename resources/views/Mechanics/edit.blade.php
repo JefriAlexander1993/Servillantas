@@ -14,8 +14,12 @@
             </i>
         </a>
         @endif
+        <a class="btn btn-secundary btn-sm " href="{{ route('Mechanics.show', auth::id())}}" title="Ver mechanic">
+                    <i class="fa fa-eye">
+                    </i>
+            </a>
     </h2>
-    {!! Form::model($mechanic, ['route' => ['Mechanics.update', Auth::id()], 'method' => 'PUT']) !!}
+    {!! Form::model($mechanic, ['route' => ['Mechanics.update', $mechanic->id], 'method' => 'PUT']) !!}
 
            @include('Mechanics.fragment.form')
 

@@ -6,7 +6,7 @@
     	<h2>
            <b> Nombres: {{ $mechanic->name_user }}</b>
       
-                       <a href="{{ route('Mechanics.edit', Auth::id())}}" class="btn btn-primary pull-right" title="Actualizar cliente"> <i class="fa fa-edit"></i></a>           
+                       <a href="{{ route('Mechanics.edit', $mechanic->id)}}" class="btn btn-primary pull-right" title="Actualizar mecanico"> <i class="fa fa-edit"></i></a>           
         </h2>
      
              

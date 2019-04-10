@@ -50,24 +50,25 @@ class AppointmentController extends Controller
     public function assignationUpdate(Request $request , $id){
 
         $appointment =   Appointment::where('id','=',$id)->first();
-        $appointment->user_id = $request->user_id;
+        $appointment->mechanic_id = $request->user_id;
         $appointment->state ='Asignada';
+        
+
         $appointment->save(); 
+        
+
+       
             return redirect()->route('Appointments.index')
                 ->with('info','La cita se ha asignado  exitosamente.');
 
     }
 
+
     public function allAppointments() {
           
-        $mes = date("m"); 
-        $dia =date("d");
-        $año =date("Y");
+   
         $appointments = DB::table('appointments')->where('attended','No')
-                ->whereMonth('date', $mes)
-                ->whereDay('date', $dia)
-                ->whereYear('date', $año)
-                ->get();
+         ->get();
 
         $appointments->sortBy('hour_end');        
     
@@ -78,12 +79,18 @@ class AppointmentController extends Controller
         $mes = date("m"); 
         $dia =date("d");
         $año =date("Y");
+
+        
+        
          
       $appointments= Appointment::where('user_id', Auth::id())
                 ->whereMonth('date', $mes)
                 ->whereDay('date', $dia)
                 ->whereYear('date', $año)
       ->get();
+
+       
+    
 
       return view('Appointments.myAppointments', compact('appointments'));
     }
@@ -113,7 +120,8 @@ class AppointmentController extends Controller
          $appointment->description = $request->description;
          $appointment->date = $request->date;
          $appointment->hour_end= $request->hour_end;
-         $appointment->user_id= Auth::id();
+
+         $appointment->user_id=Auth::id();
          $appointment->save();
     
             return redirect()->route('Appointments.myAppointments')
@@ -166,7 +174,6 @@ class AppointmentController extends Controller
               $appointment->save();
                return back()->with('info','La cita fue cumplida exitosamente.');
                  
-                
         }
                return back()
                 ->with('danger','Su nuip no fue correcto, vulve a intentarlo.');
